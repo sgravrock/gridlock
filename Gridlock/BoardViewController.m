@@ -7,23 +7,44 @@
 //
 
 #import "BoardViewController.h"
+#import "Game.h"
+#import "CellView.h"
 
 @interface BoardViewController ()
-
+@property (nonatomic, strong) Game *game;
+- (void)updateCells;
 @end
 
 @implementation BoardViewController
 
-- (void)viewDidLoad
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+	self = [super initWithCoder:aDecoder];
+	
+	if (self) {
+		self.game = [[Game alloc] init];
+	}
+	
+	return self;
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidLoad
 {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+	[self updateCells];
+}
+
+- (void)updateCells
+{
+	for (int i = 0; i < self.game.cells.count; i++) {
+		CellView *c = [self.view.subviews objectAtIndex:i];
+		id color = [self.game.cells objectAtIndex:i];
+		
+		if (color == [NSNull null]) {
+			color = nil;
+		}
+		
+		c.color = color;
+	}
 }
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA07D0A61674317300C6FCB3 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D0A51674317300C6FCB3 /* Game.m */; };
 		AA311970167413FC008B33DC /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31196F167413FC008B33DC /* BoardView.m */; };
 		AA3119731674165C008B33DC /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3119721674165C008B33DC /* CellView.m */; };
 		AA8A20541674108B00325C4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA07D0A41674317300C6FCB3 /* Game.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		AA07D0A51674317300C6FCB3 /* Game.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 		AA31196E167413FC008B33DC /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
 		AA31196F167413FC008B33DC /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		AA3119711674165C008B33DC /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
@@ -99,6 +102,8 @@
 				AA31196F167413FC008B33DC /* BoardView.m */,
 				AA3119711674165C008B33DC /* CellView.h */,
 				AA3119721674165C008B33DC /* CellView.m */,
+				AA07D0A41674317300C6FCB3 /* Game.h */,
+				AA07D0A51674317300C6FCB3 /* Game.m */,
 			);
 			path = Gridlock;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				AA8A20701674108B00325C4F /* BoardViewController.m in Sources */,
 				AA311970167413FC008B33DC /* BoardView.m in Sources */,
 				AA3119731674165C008B33DC /* CellView.m in Sources */,
+				AA07D0A61674317300C6FCB3 /* Game.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +274,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gridlock/Gridlock-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Gridlock/Gridlock-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -280,6 +287,7 @@
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Gridlock/Gridlock-Prefix.pch";
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Gridlock/Gridlock-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";

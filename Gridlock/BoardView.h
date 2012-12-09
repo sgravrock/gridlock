@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BoardView.h
 //  Gridlock
 //
 //  Created by Steve Gravrock on 12/8/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface BoardView : UIView
 
 @end

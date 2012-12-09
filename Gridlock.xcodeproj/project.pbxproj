@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AA311970167413FC008B33DC /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31196F167413FC008B33DC /* BoardView.m */; };
+		AA3119731674165C008B33DC /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3119721674165C008B33DC /* CellView.m */; };
 		AA8A20541674108B00325C4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
 		AA8A20561674108B00325C4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20551674108B00325C4F /* Foundation.framework */; };
 		AA8A20581674108B00325C4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20571674108B00325C4F /* CoreGraphics.framework */; };
@@ -17,10 +19,14 @@
 		AA8A20681674108B00325C4F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8A20671674108B00325C4F /* Default@2x.png */; };
 		AA8A206A1674108B00325C4F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8A20691674108B00325C4F /* Default-568h@2x.png */; };
 		AA8A206D1674108B00325C4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8A206B1674108B00325C4F /* MainStoryboard.storyboard */; };
-		AA8A20701674108B00325C4F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8A206F1674108B00325C4F /* ViewController.m */; };
+		AA8A20701674108B00325C4F /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8A206F1674108B00325C4F /* BoardViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AA31196E167413FC008B33DC /* BoardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoardView.h; sourceTree = "<group>"; };
+		AA31196F167413FC008B33DC /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
+		AA3119711674165C008B33DC /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
+		AA3119721674165C008B33DC /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
 		AA8A204F1674108B00325C4F /* Gridlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gridlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8A20531674108B00325C4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		AA8A20551674108B00325C4F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,8 +41,8 @@
 		AA8A20671674108B00325C4F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		AA8A20691674108B00325C4F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		AA8A206C1674108B00325C4F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		AA8A206E1674108B00325C4F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		AA8A206F1674108B00325C4F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		AA8A206E1674108B00325C4F /* BoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
+		AA8A206F1674108B00325C4F /* BoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,9 +92,13 @@
 				AA8A20621674108B00325C4F /* AppDelegate.h */,
 				AA8A20631674108B00325C4F /* AppDelegate.m */,
 				AA8A206B1674108B00325C4F /* MainStoryboard.storyboard */,
-				AA8A206E1674108B00325C4F /* ViewController.h */,
-				AA8A206F1674108B00325C4F /* ViewController.m */,
+				AA8A206E1674108B00325C4F /* BoardViewController.h */,
+				AA8A206F1674108B00325C4F /* BoardViewController.m */,
 				AA8A205A1674108B00325C4F /* Supporting Files */,
+				AA31196E167413FC008B33DC /* BoardView.h */,
+				AA31196F167413FC008B33DC /* BoardView.m */,
+				AA3119711674165C008B33DC /* CellView.h */,
+				AA3119721674165C008B33DC /* CellView.m */,
 			);
 			path = Gridlock;
 			sourceTree = "<group>";
@@ -175,7 +185,9 @@
 			files = (
 				AA8A20601674108B00325C4F /* main.m in Sources */,
 				AA8A20641674108B00325C4F /* AppDelegate.m in Sources */,
-				AA8A20701674108B00325C4F /* ViewController.m in Sources */,
+				AA8A20701674108B00325C4F /* BoardViewController.m in Sources */,
+				AA311970167413FC008B33DC /* BoardView.m in Sources */,
+				AA3119731674165C008B33DC /* CellView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

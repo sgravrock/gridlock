@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Steve Gravrock. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "BoardViewController.h"
 
-@interface ViewController ()
+@interface BoardViewController ()
 
 @end
 
-@implementation ViewController
+@implementation BoardViewController
 
 - (void)viewDidLoad
 {

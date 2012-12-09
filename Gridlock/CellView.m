@@ -32,10 +32,20 @@
 	[self setNeedsDisplay];
 }
 
+- (void)setIsHighlighted:(BOOL)value
+{
+	_isHighlighted = value;
+	[self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect
 {
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
-	CGContextSetFillColorWithColor(ctx, [UIColor whiteColor].CGColor);
+	
+	// TODO: Higlight cells in a way that isn't so crude.
+	UIColor *bgColor = self.isHighlighted ? [UIColor blackColor] : [UIColor whiteColor];
+	CGContextSetFillColorWithColor(ctx, bgColor.CGColor);
+	
 	CGContextFillRect(ctx, self.bounds);
 
 	if (self.color) {

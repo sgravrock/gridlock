@@ -31,6 +31,33 @@
 - (void)viewDidLoad
 {
 	[self updateCells];
+	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
+											 initWithTarget:self action:@selector(handleTap:)];
+	[self.view addGestureRecognizer:tapRecognizer];
+}
+
+- (void)handleTap:(UITapGestureRecognizer *)sender
+{
+	if (sender.state == UIGestureRecognizerStateEnded) {
+		// Figure out which subview (if any) was tapped.
+		CGPoint where = [sender locationInView:self.view];
+		NSLog(@"x=%f,y=%f", where.x, where.y);
+		
+		for (int i = 0; i < self.view.subviews.count; i++) {
+			CellView *cv = [self.view.subviews objectAtIndex:i];
+			
+			if (CGRectContainsPoint(cv.frame, where)) {
+				[self handleTapInCell:cv atIndex:i];
+			}
+		}
+	}
+}
+
+- (void)handleTapInCell:(CellView *)cellView atIndex:(int)cellIx
+{
+	for (CellView *v in self.view.subviews) {
+		v.isHighlighted = v == cellView;
+	}
 }
 
 - (void)updateCells

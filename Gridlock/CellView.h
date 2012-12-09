@@ -11,5 +11,6 @@
 @interface CellView : UIView
 
 @property (nonatomic, strong) UIColor *color;
+@property (nonatomic, assign) BOOL isHighlighted;
 
 @end

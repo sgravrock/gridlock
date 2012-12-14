@@ -9,6 +9,7 @@
 #import "BoardViewController.h"
 #import "Game.h"
 #import "CellView.h"
+#import "Alert.h"
 
 @interface BoardViewController () {
 	int moveSrc;
@@ -75,8 +76,21 @@
 		[self.game moveFromCell:moveSrc toCell:cellIx];
 		[[self.view.subviews objectAtIndex:moveSrc] setIsHighlighted:NO];
 		moveSrc = -1;
-		[self updateCells];
+		
+		if ([self.game freeCells] == 0) {
+			[self gameOver];
+		} else {
+			[self updateCells];
+		}
 	}
+}
+
+- (void)gameOver
+{
+	[Alert showWithTitle:@"Game Over" message:@"" andThen:^{
+		self.game = [[Game alloc] init];
+		[self updateCells];
+	}];
 }
 
 - (void)updateCells

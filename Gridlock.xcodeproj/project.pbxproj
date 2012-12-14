@@ -21,6 +21,7 @@
 		AA8A206A1674108B00325C4F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8A20691674108B00325C4F /* Default-568h@2x.png */; };
 		AA8A206D1674108B00325C4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8A206B1674108B00325C4F /* MainStoryboard.storyboard */; };
 		AA8A20701674108B00325C4F /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8A206F1674108B00325C4F /* BoardViewController.m */; };
+		AAA7CC1A167B3A0300C7C8B5 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CC19167B3A0300C7C8B5 /* Alert.m */; };
 		AAB49101167B09CD00C20263 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB49100167B09CD00C20263 /* SenTestingKit.framework */; };
 		AAB49102167B09CD00C20263 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
 		AAB49103167B09CD00C20263 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20551674108B00325C4F /* Foundation.framework */; };
@@ -65,6 +66,8 @@
 		AA8A206C1674108B00325C4F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		AA8A206E1674108B00325C4F /* BoardViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BoardViewController.h; sourceTree = "<group>"; };
 		AA8A206F1674108B00325C4F /* BoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
+		AAA7CC18167B3A0300C7C8B5 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
+		AAA7CC19167B3A0300C7C8B5 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
 		AAB490FF167B09CD00C20263 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB49100167B09CD00C20263 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		AAB49106167B09CD00C20263 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				AA07D0A51674317300C6FCB3 /* Game.m */,
 				AAB73A89167B273100D97A6A /* Randomizer.h */,
 				AAB73A8A167B273100D97A6A /* Randomizer.m */,
+				AAA7CC18167B3A0300C7C8B5 /* Alert.h */,
+				AAA7CC19167B3A0300C7C8B5 /* Alert.m */,
 			);
 			path = Gridlock;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				AA3119731674165C008B33DC /* CellView.m in Sources */,
 				AA07D0A61674317300C6FCB3 /* Game.m in Sources */,
 				AAB73A8B167B273100D97A6A /* Randomizer.m in Sources */,
+				AAA7CC1A167B3A0300C7C8B5 /* Alert.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

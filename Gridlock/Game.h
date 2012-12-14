@@ -5,7 +5,6 @@
 //  Created by Steve Gravrock on 12/8/12.
 //  Copyright (c) 2012 Steve Gravrock. All rights reserved.
 //
-
 #import <Foundation/Foundation.h>
 @class Randomizer;
 
@@ -19,6 +18,7 @@
 // The colors of each cell, stored in row-major order. Empty cells are nil.
 @property (nonatomic, readonly, strong) NSMutableArray *cells;
 
+- (int)freeCells;
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx;
 
 @end

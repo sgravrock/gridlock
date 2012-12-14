@@ -58,6 +58,19 @@
 	return size;
 }
 
+- (int)freeCells
+{
+	int n = 0;
+	
+	for (id c in self.cells) {
+		if (c == [NSNull null]) {
+			n++;
+		}
+	}
+	
+	return n;
+}
+
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx
 {
 	if ([self.cells objectAtIndex:destIx] != [NSNull null] ||
@@ -75,7 +88,7 @@
 - (void)placeRandomChips
 {
 	// Randomly place three random colors.
-	int toPlace = 3;
+	int toPlace = MIN(3, [self freeCells]);
 	
 	while (toPlace > 0) {
 		int where = [self.randomizer randomBelow:size * size];

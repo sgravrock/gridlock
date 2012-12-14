@@ -12,7 +12,7 @@
 
 @implementation Game_Tests
 
-- (void)testAllowsMoveToEmptyCell
+- (void)testAllowsMoveToEmptyReachableCell
 {
 	Game *target = [[Game alloc] init];
 	[target.cells replaceObjectAtIndex:0 withObject:[UIColor blueColor]];
@@ -63,6 +63,22 @@
 								 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
 		}
 	}
+}
+
+- (void)testRejectsMoveToUnreachableCell
+{
+	Game *target = [[Game alloc] init];
+	/*  s x
+	 *   xd
+	 *  x
+	 */
+	[target.cells replaceObjectAtIndex:0 withObject:[UIColor blueColor]];
+	[target.cells replaceObjectAtIndex:2 withObject:[UIColor blueColor]];
+	[target.cells replaceObjectAtIndex:10 withObject:[UIColor blueColor]];
+	[target.cells replaceObjectAtIndex:18 withObject:[UIColor blueColor]];
+	[target moveFromCell:0 toCell:11];
+	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
+	STAssertEqualObjects([target.cells objectAtIndex:11], [NSNull null], @"Destination was changed");
 }
 
 @end

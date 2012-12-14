@@ -9,7 +9,6 @@
 #import "Game.h"
 #import "Randomizer.h"
 
-
 @interface Game() {
 	int size;
 }
@@ -18,6 +17,11 @@
 @property (nonatomic, strong) NSMutableArray *cells;
 @property (nonatomic, strong) NSArray *colors;
 - (UIColor *)randomColor;
+- (int)cellIndexAbove:(int)index;
+- (int)cellIndexBelow:(int)index;
+- (int)cellIndexLeftOf:(int)index;
+- (int)cellIndexRightOf:(int)index;
+- (BOOL)canReachCell:(int)destIx fromCell:(int)srcIx;
 @end
 
 @implementation Game
@@ -56,7 +60,8 @@
 
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx
 {
-	if ([self.cells objectAtIndex:destIx] != [NSNull null]) {
+	if ([self.cells objectAtIndex:destIx] != [NSNull null] ||
+		![self canReachCell:destIx fromCell:srcIx]) {
 		return;
 	}
 	
@@ -86,6 +91,63 @@
 - (UIColor *)randomColor
 {
 	return [self.colors objectAtIndex:[self.randomizer randomBelow:self.colors.count]];
+}
+
+- (BOOL)canReachCell:(int)destIx fromCell:(int)srcIx
+{
+	NSMutableSet *reached = [NSMutableSet set];
+	NSMutableSet *toTest = [NSMutableSet setWithObject:[NSNumber numberWithInt:srcIx]];
+	
+	while (toTest.count > 0) {
+		NSNumber *boxed = [toTest anyObject];
+		[toTest removeObject:boxed];
+		int c = [boxed intValue];
+		int neighbors[] = {
+			[self cellIndexAbove:c],
+			[self cellIndexBelow:c],
+			[self cellIndexLeftOf:c],
+			[self cellIndexRightOf:c]
+		};
+		
+		// Evaluate all existing cells in the four directions
+		for (int i = 0; i < sizeof neighbors / sizeof *neighbors; i++) {
+			int n = neighbors[i];
+			boxed = [NSNumber numberWithInt:n];
+			
+			if (n >= 0 && n < self.cells.count &&
+				[self.cells objectAtIndex:n] == [NSNull null] &&
+				![reached containsObject:boxed]) {
+				
+				if (n == destIx) {
+					return true;
+				}
+				
+				[reached addObject:boxed];
+				[toTest addObject:boxed];
+			}
+		}
+	}
+	
+	return NO;
+}
+- (int)cellIndexAbove:(int)index
+{
+	return index - size;
+}
+
+- (int)cellIndexBelow:(int)index
+{
+	return index + size;
+}
+
+- (int)cellIndexLeftOf:(int)index
+{
+	return index % size == 0 ? -1 : index - 1;
+}
+
+- (int)cellIndexRightOf:(int)index
+{
+	return index % size == index - 1 ? -1 : index + 1;
 }
 
 @end

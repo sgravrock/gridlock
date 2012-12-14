@@ -7,15 +7,14 @@
 //
 
 #import "Game.h"
+#import "Randomizer.h"
 
-static int random_below(int n) {
-	return (int)((double)rand() / ((double)RAND_MAX + 1) * n);
-}
 
 @interface Game() {
 	int size;
 }
 
+@property (nonatomic, strong) Randomizer *randomizer;
 @property (nonatomic, strong) NSMutableArray *cells;
 @property (nonatomic, strong) NSArray *colors;
 - (UIColor *)randomColor;
@@ -25,10 +24,16 @@ static int random_below(int n) {
 
 - (id)init
 {
+	return [self initWithRandomizer:[[Randomizer alloc] init]];
+}
+
+- (id)initWithRandomizer:(Randomizer *)randomizer
+{
 	self = [super init];
 	
 	if (self) {
 		size = 9;
+		self.randomizer = randomizer;
 		self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor],
 					   [UIColor yellowColor], [UIColor orangeColor], [UIColor greenColor],
 					   [UIColor purpleColor], nil];
@@ -38,19 +43,7 @@ static int random_below(int n) {
 			[self.cells addObject:[NSNull null]];
 		}
 		
-		srand(time(NULL));
-		
-		// Randomly place three random colors.
-		int toPlace = 3;
-		
-		while (toPlace > 0) {
-			int where = random_below(size * size);
-			
-			if ([self.cells objectAtIndex:where] == [NSNull null]) {
-				[self.cells replaceObjectAtIndex:where withObject:[self randomColor]];
-				toPlace--;
-			}
-		}
+		[self placeRandomChips];
 	}
 	
 	return self;
@@ -63,15 +56,36 @@ static int random_below(int n) {
 
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx
 {
-	if ([self.cells objectAtIndex:destIx] == [NSNull null]) {
-		[self.cells replaceObjectAtIndex:destIx withObject:[self.cells objectAtIndex:srcIx]];
-		[self.cells replaceObjectAtIndex:srcIx withObject:[NSNull null]];
+	if ([self.cells objectAtIndex:destIx] != [NSNull null]) {
+		return;
 	}
+	
+	[self.cells replaceObjectAtIndex:destIx withObject:[self.cells objectAtIndex:srcIx]];
+	[self.cells replaceObjectAtIndex:srcIx withObject:[NSNull null]];
+	
+	// TODO: Don't do this if the move completed five in a row.
+	[self placeRandomChips];
+}
+
+- (void)placeRandomChips
+{
+	// Randomly place three random colors.
+	int toPlace = 3;
+	
+	while (toPlace > 0) {
+		int where = [self.randomizer randomBelow:size * size];
+		
+		if ([self.cells objectAtIndex:where] == [NSNull null]) {
+			[self.cells replaceObjectAtIndex:where withObject:[self randomColor]];
+			toPlace--;
+		}
+	}
+
 }
 
 - (UIColor *)randomColor
 {
-	return [self.colors objectAtIndex:random_below(self.colors.count)];
+	return [self.colors objectAtIndex:[self.randomizer randomBelow:self.colors.count]];
 }
 
 @end

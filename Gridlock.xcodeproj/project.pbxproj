@@ -27,6 +27,9 @@
 		AAB49109167B09CD00C20263 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB49107167B09CD00C20263 /* InfoPlist.strings */; };
 		AAB49116167B0B6700C20263 /* Game_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB49115167B0B6700C20263 /* Game_Tests.m */; };
 		AAB49117167B0DFF00C20263 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D0A51674317300C6FCB3 /* Game.m */; };
+		AAB73A8B167B273100D97A6A /* Randomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8A167B273100D97A6A /* Randomizer.m */; };
+		AAB73A8C167B273100D97A6A /* Randomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8A167B273100D97A6A /* Randomizer.m */; };
+		AAB73A90167B28F900D97A6A /* FakeRandomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +72,10 @@
 		AAB4910D167B09CD00C20263 /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
 		AAB49114167B0B6700C20263 /* Game_Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game_Tests.h; sourceTree = "<group>"; };
 		AAB49115167B0B6700C20263 /* Game_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game_Tests.m; sourceTree = "<group>"; };
+		AAB73A89167B273100D97A6A /* Randomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Randomizer.h; sourceTree = "<group>"; };
+		AAB73A8A167B273100D97A6A /* Randomizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Randomizer.m; sourceTree = "<group>"; };
+		AAB73A8E167B28F900D97A6A /* FakeRandomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRandomizer.h; sourceTree = "<group>"; };
+		AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRandomizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +147,8 @@
 				AA3119721674165C008B33DC /* CellView.m */,
 				AA07D0A41674317300C6FCB3 /* Game.h */,
 				AA07D0A51674317300C6FCB3 /* Game.m */,
+				AAB73A89167B273100D97A6A /* Randomizer.h */,
+				AAB73A8A167B273100D97A6A /* Randomizer.m */,
 			);
 			path = Gridlock;
 			sourceTree = "<group>";
@@ -164,6 +173,8 @@
 				AAB49105167B09CD00C20263 /* Supporting Files */,
 				AAB49114167B0B6700C20263 /* Game_Tests.h */,
 				AAB49115167B0B6700C20263 /* Game_Tests.m */,
+				AAB73A8E167B28F900D97A6A /* FakeRandomizer.h */,
+				AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */,
 			);
 			path = "Unit Tests";
 			sourceTree = "<group>";
@@ -294,6 +305,7 @@
 				AA311970167413FC008B33DC /* BoardView.m in Sources */,
 				AA3119731674165C008B33DC /* CellView.m in Sources */,
 				AA07D0A61674317300C6FCB3 /* Game.m in Sources */,
+				AAB73A8B167B273100D97A6A /* Randomizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -303,6 +315,8 @@
 			files = (
 				AAB49116167B0B6700C20263 /* Game_Tests.m in Sources */,
 				AAB49117167B0DFF00C20263 /* Game.m in Sources */,
+				AAB73A8C167B273100D97A6A /* Randomizer.m in Sources */,
+				AAB73A90167B28F900D97A6A /* FakeRandomizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +495,7 @@
 				AAB4910F167B09CD00C20263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

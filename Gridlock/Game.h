@@ -7,8 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Randomizer;
 
 @interface Game : NSObject
+
+- (id)init;
+- (id)initWithRandomizer:(Randomizer *)randomizer;
 
 // The width and height of the board
 @property (nonatomic, readonly) int size;

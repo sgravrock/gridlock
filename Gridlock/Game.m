@@ -63,7 +63,7 @@ static int random_below(int n) {
 
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx
 {
-	if (srcIx != destIx) {
+	if ([self.cells objectAtIndex:destIx] == [NSNull null]) {
 		[self.cells replaceObjectAtIndex:destIx withObject:[self.cells objectAtIndex:srcIx]];
 		[self.cells replaceObjectAtIndex:srcIx withObject:[NSNull null]];
 	}

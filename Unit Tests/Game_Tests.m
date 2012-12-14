@@ -32,4 +32,15 @@
 	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Cell was changed");
 }
 
+- (void)testRejectsMoveToOccupiedCell
+{
+	Game *target = [[Game alloc] init];
+	[target.cells replaceObjectAtIndex:0 withObject:[UIColor blueColor]];
+	[target.cells replaceObjectAtIndex:1 withObject:[UIColor redColor]];
+	[target moveFromCell:0 toCell:1];
+	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
+	STAssertEqualObjects([target.cells objectAtIndex:1], [UIColor redColor],
+						 @"Destination was changed");
+}
+
 @end

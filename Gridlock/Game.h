@@ -15,4 +15,6 @@
 // The colors of each cell, stored in row-major order. Empty cells are nil.
 @property (nonatomic, readonly, strong) NSMutableArray *cells;
 
+- (void)moveFromCell:(int)srcIx toCell:(int)destIx;
+
 @end

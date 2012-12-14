@@ -10,7 +10,9 @@
 #import "Game.h"
 #import "CellView.h"
 
-@interface BoardViewController ()
+@interface BoardViewController () {
+	int moveSrc;
+}
 @property (nonatomic, strong) Game *game;
 - (void)updateCells;
 @end
@@ -22,6 +24,7 @@
 	self = [super initWithCoder:aDecoder];
 	
 	if (self) {
+		moveSrc = -1;
 		self.game = [[Game alloc] init];
 	}
 	
@@ -55,8 +58,24 @@
 
 - (void)handleTapInCell:(CellView *)cellView atIndex:(int)cellIx
 {
-	for (CellView *v in self.view.subviews) {
-		v.isHighlighted = v == cellView;
+	if (moveSrc < 0) {
+		// The user selected the source cell of a move.
+		if ([self.game.cells objectAtIndex:cellIx] == [NSNull null]) {
+			return; // Can't move an empty cell.
+		}
+		
+		for (CellView *v in self.view.subviews) {
+			v.isHighlighted = v == cellView;
+		}
+		
+		moveSrc = cellIx;
+	} else {
+		// The user selected the destinaton cell of a move.
+		// TODO: only allow valid moves
+		[self.game moveFromCell:moveSrc toCell:cellIx];
+		[[self.view.subviews objectAtIndex:moveSrc] setIsHighlighted:NO];
+		moveSrc = -1;
+		[self updateCells];
 	}
 }
 

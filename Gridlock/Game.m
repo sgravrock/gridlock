@@ -61,6 +61,14 @@ static int random_below(int n) {
 	return size;
 }
 
+- (void)moveFromCell:(int)srcIx toCell:(int)destIx
+{
+	if (srcIx != destIx) {
+		[self.cells replaceObjectAtIndex:destIx withObject:[self.cells objectAtIndex:srcIx]];
+		[self.cells replaceObjectAtIndex:srcIx withObject:[NSNull null]];
+	}
+}
+
 - (UIColor *)randomColor
 {
 	return [self.colors objectAtIndex:random_below(self.colors.count)];

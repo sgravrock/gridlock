@@ -8,6 +8,7 @@
 
 #import "Game.h"
 #import "Randomizer.h"
+#define RUN_LENGTH 5
 
 @interface Game() {
 	int size;
@@ -81,8 +82,78 @@
 	[self.cells replaceObjectAtIndex:destIx withObject:[self.cells objectAtIndex:srcIx]];
 	[self.cells replaceObjectAtIndex:srcIx withObject:[NSNull null]];
 	
-	// TODO: Don't do this if the move completed five in a row.
-	[self placeRandomChips];
+	NSArray *sequence = [self findRun];
+	
+	if (sequence) {
+		[self clearCells:sequence];
+	} else {
+		[self placeRandomChips];
+		sequence = [self findRun];
+		
+		if (sequence) {
+			[self clearCells:sequence];
+		}
+	}
+}
+
+- (NSArray *)findRun
+{
+	int candidates[RUN_LENGTH];
+	
+	// TODO: also check vertically and diagonally
+	for (int y = 0; y < size; y++) {
+		for (int x = 0; x <= size - RUN_LENGTH; x++) {
+			for (int i = 0; i < RUN_LENGTH; i++) {
+				candidates[i] = y * size + x + i;
+			}
+			
+			if ([self isRun:candidates]) {
+				return [self NSrrayFromInts:candidates];
+			} else {
+				NSLog(@"Not a run at %@", [self NSrrayFromInts:candidates]);
+			}
+		}
+	}
+	
+	return nil;
+}
+
+- (BOOL)isRun:(int *)candidates
+{
+	id first = [self.cells objectAtIndex:candidates[0]];
+	
+	if (first == [NSNull null]) {
+		return NO;
+	}
+	
+	for (int i = 0; i < RUN_LENGTH; i++) {
+		id cell = [self.cells objectAtIndex:candidates[i]];
+		
+		if (![cell isEqual:first]) {
+			return NO;
+		}
+	}
+	
+	// All the cells are the same color, and non-empty.
+	return YES;
+}
+
+- (NSArray *)NSrrayFromInts:(int *)candidates
+{
+	NSMutableArray *a = [NSMutableArray arrayWithCapacity:RUN_LENGTH];
+	
+	for (int i = 0; i < RUN_LENGTH; i++) {
+		[a addObject:[NSNumber numberWithInt:candidates[i]]];
+	}
+	
+	return a;
+}
+
+- (void)clearCells:(NSArray *)indexes
+{
+	for (NSNumber *n in indexes) {
+		[self.cells replaceObjectAtIndex:[n intValue] withObject:[NSNull null]];
+	}
 }
 
 - (void)placeRandomChips

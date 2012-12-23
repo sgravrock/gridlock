@@ -98,10 +98,20 @@
 
 - (NSArray *)findRun
 {
-	// TODO: also check vertically and diagonally
+	// TODO: also check diagonally
 	for (int y = 0; y < size; y++) {
+		// horizontal
 		for (int x = 0; x <= size - RUN_LENGTH; x++) {
-			NSArray *run = [self runFromCellIndex:y * size + x];
+			NSArray *run = [self runFromCellIndex:y * size + x offset:1];
+			
+			if (run) {
+				return run;
+			}
+		}
+		
+		// vertical
+		for (int x = 0; x < size; x++) {
+			NSArray *run = [self runFromCellIndex:y * size + x offset:size];
 			
 			if (run) {
 				return run;
@@ -114,7 +124,7 @@
 
 // Returns the run of matching, non-empty cells starting at startIx,
 // or nil if it's not a run.
-- (NSArray *)runFromCellIndex:(int)i
+- (NSArray *)runFromCellIndex:(int)i offset:(int)offset
 {
 	id first = [self.cells objectAtIndex:i];
 	
@@ -124,9 +134,10 @@
 	
 	NSMutableArray *candidate = [NSMutableArray arrayWithCapacity:RUN_LENGTH]; // might get bigger
 	[candidate addObject:[NSNumber numberWithInt:i]];
+	BOOL isVertical = offset % size == 0;
 	
 	// Continue to the edge of the board or until we hit a non-matching cell
-	for (i++; i % size != 0; i++) {
+	for (i += offset; i < self.cells.count && (isVertical || i % size != 0) ; i += offset) {
 		if (![[self.cells objectAtIndex:i] isEqual:first]) {
 			break;
 		}

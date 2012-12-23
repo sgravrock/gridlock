@@ -98,21 +98,25 @@
 
 - (NSArray *)findRun
 {
-	// TODO: also check diagonally
+	// TODO: also check the other diagonal
 	for (int y = 0; y < size; y++) {
-		// horizontal
+		// horizontal and diagonal down to the right
 		for (int x = 0; x <= size - RUN_LENGTH; x++) {
 			NSArray *run = [self runFromCellIndex:y * size + x offset:1];
+			
+			if (!run) {
+				run = [self runFromCellIndex:y * size + x offset:size + 1];
+			}
 			
 			if (run) {
 				return run;
 			}
 		}
 		
-		// vertical
+		// vertical 
 		for (int x = 0; x < size; x++) {
 			NSArray *run = [self runFromCellIndex:y * size + x offset:size];
-			
+						
 			if (run) {
 				return run;
 			}

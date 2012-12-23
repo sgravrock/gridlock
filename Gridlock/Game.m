@@ -98,19 +98,13 @@
 
 - (NSArray *)findRun
 {
-	int candidates[RUN_LENGTH];
-	
 	// TODO: also check vertically and diagonally
 	for (int y = 0; y < size; y++) {
 		for (int x = 0; x <= size - RUN_LENGTH; x++) {
-			for (int i = 0; i < RUN_LENGTH; i++) {
-				candidates[i] = y * size + x + i;
-			}
+			NSArray *run = [self runFromCellIndex:y * size + x];
 			
-			if ([self isRun:candidates]) {
-				return [self NSrrayFromInts:candidates];
-			} else {
-				NSLog(@"Not a run at %@", [self NSrrayFromInts:candidates]);
+			if (run) {
+				return run;
 			}
 		}
 	}
@@ -118,24 +112,33 @@
 	return nil;
 }
 
-- (BOOL)isRun:(int *)candidates
+// Returns the run of matching, non-empty cells starting at startIx,
+// or nil if it's not a run.
+- (NSArray *)runFromCellIndex:(int)i
 {
-	id first = [self.cells objectAtIndex:candidates[0]];
+	id first = [self.cells objectAtIndex:i];
 	
 	if (first == [NSNull null]) {
 		return NO;
 	}
 	
-	for (int i = 0; i < RUN_LENGTH; i++) {
-		id cell = [self.cells objectAtIndex:candidates[i]];
-		
-		if (![cell isEqual:first]) {
-			return NO;
+	NSMutableArray *candidate = [NSMutableArray arrayWithCapacity:RUN_LENGTH]; // might get bigger
+	[candidate addObject:[NSNumber numberWithInt:i]];
+	
+	// Continue to the edge of the board or until we hit a non-matching cell
+	for (i++; i % size != 0; i++) {
+		if (![[self.cells objectAtIndex:i] isEqual:first]) {
+			break;
 		}
+		
+		[candidate addObject:[NSNumber numberWithInt:i]];
 	}
 	
-	// All the cells are the same color, and non-empty.
-	return YES;
+	if (candidate.count >= RUN_LENGTH) {
+		return candidate;
+	}
+	
+	return nil;
 }
 
 - (NSArray *)NSrrayFromInts:(int *)candidates

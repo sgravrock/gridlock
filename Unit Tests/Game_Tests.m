@@ -119,6 +119,28 @@
 	}
 }
 
+- (void)testHandlesMoreThanFiveHorizontally
+{
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 10, 0, 2, 0, 16, 0, 17, 0,
+					 18, 0, 19, 0, 20, 0, 22, 0, 24, 0, 26, 0, 28, 0, -1];
+	Game *target = [[Game alloc] initWithRandomizer:r];
+	
+	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	[target moveFromCell:10 toCell:1];
+	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	[target moveFromCell:16 toCell:3];
+	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	[target moveFromCell:17 toCell:5];
+	STAssertEquals([target freeCells], 9 * 9 - 12, @"Wrong number of free cells");
+	[target moveFromCell:18 toCell:4];
+	// The row of 6 should be removed and no more cells should be placed.
+	STAssertEquals([target freeCells], 9 * 9 - 12 + 6, @"Wrong number of free cells");
+	
+	for (int i = 0; i < 6; i++) {
+		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+	}
+}
 
 - (void)testDifferentColorsDontCountAsRuns
 {
@@ -152,7 +174,5 @@
 	
 }
 
-// TODO: verify vertical and diagonal, longer sequences,
-// intersections, and that only sequences of the same color count.
-
+// TODO: verify vertical and diagonal sequences and intersections
 @end

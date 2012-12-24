@@ -48,4 +48,9 @@
 	return [it intValue];
 }
 
+- (void)log
+{
+	NSLog(@"FakeRandomizer: next is position %d of %d", next, self.results.count);
+}
+
 @end

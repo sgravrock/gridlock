@@ -15,4 +15,6 @@
 // Takes a -1-terminated list of results to return from randomBelow:
 - (id)initWithResults:(int)firstResult, ...;
 
+- (void)log;
+
 @end

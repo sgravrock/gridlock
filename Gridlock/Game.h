@@ -19,6 +19,7 @@
 @property (nonatomic, readonly, strong) NSMutableArray *cells;
 
 - (int)freeCells;
+- (NSString *)toStringForLog;
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx;
 
 @end

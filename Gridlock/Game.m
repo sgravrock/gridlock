@@ -96,27 +96,63 @@
 	}
 }
 
-- (NSArray *)findRun
+- (NSString *)toStringForLog
 {
-	// TODO: also check the other diagonal
-	for (int y = 0; y < size; y++) {
-		// horizontal and diagonal down to the right
-		for (int x = 0; x <= size - RUN_LENGTH; x++) {
-			NSArray *run = [self runFromCellIndex:y * size + x offset:1];
-			
-			if (!run) {
-				run = [self runFromCellIndex:y * size + x offset:size + 1];
-			}
-			
-			if (run) {
-				return run;
-			}
+	NSMutableString *s = [NSMutableString stringWithString:@"\n"];
+	void (^addCap)() = ^{
+		[s appendString:@"   +"];
+		
+		for (int i = 0; i < size ; i++) {
+			[s appendString:@"-"];
 		}
 		
-		// vertical 
+		[s appendString:@"   +\n"];
+	};
+	
+	addCap();
+	for (int y = 0; y < size; y++) {
+		[s appendFormat:@"%2d |", y * size];
+		
 		for (int x = 0; x < size; x++) {
+			id contents = [self.cells objectAtIndex:x + y * size];
+			
+			if (contents == [NSNull null]) {
+				[s appendString:@" "];
+			} else {
+				NSAssert(self.colors.count < 10, @"Too many colors to format the log properly");
+				[s appendFormat:@"%u", [self.colors indexOfObject:contents]];
+			}
+		}
+		[s appendFormat:@"| %2d\n", y * size + size - 1];
+	}
+		
+	addCap();
+	return s;
+}
+
+- (NSArray *)findRun
+{
+	for (int y = 0; y < size; y++) {
+		for (int x = 0; x < size; x++) {
+			// Vertical
 			NSArray *run = [self runFromCellIndex:y * size + x offset:size];
-						
+			
+			if (x <= size - RUN_LENGTH) {
+				if (!run) {
+					// Horizontal
+					run = [self runFromCellIndex:y * size + x offset:1];
+				}
+				
+				if (!run) {
+					// Diagonal down and to the right
+					run = [self runFromCellIndex:y * size + x offset:size + 1];
+				}
+			} else if (!run) {
+				// Diagonal down and to the left
+				run = [self runFromCellIndex:y * size + x offset:size - 1];
+
+			}
+			
 			if (run) {
 				return run;
 			}

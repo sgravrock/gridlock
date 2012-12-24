@@ -188,11 +188,6 @@
 	[target moveFromCell:17 toCell:36];
 	// The row of 5 should be removed and no more cells should be placed.
 	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
-	
-	for (int i = 0; i < 5; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
-	}
 }
 
 - (void)testHandlesFiveInRightDiagonal
@@ -216,7 +211,22 @@
 	}
 }
 
+- (void)testHandlesFiveInLeftDiagonal
+{
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:8, 0, 11, 0, 20, 0, 45, 0, 16, 0,
+					 18, 0, 19, 0, 22, 0, 23, 0, 31, 0, 44, 0 -1];
+	Game *target = [[Game alloc] initWithRandomizer:r];
+	
+	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	[target moveFromCell:11 toCell:24];
+	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	[target moveFromCell:45 toCell:32];
+	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	NSLog(@"%@", [target toStringForLog]);
+	[target moveFromCell:18 toCell:40];
+	// The row of 5 should be removed and no more cells should be placed.
+	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+}
 
-
-// TODO: verify diagonal sequences and intersections
+// TODO: verify intersections
 @end

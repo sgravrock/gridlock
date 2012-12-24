@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -8,16 +8,66 @@
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="BoardViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="3" customClass="BoardView">
+                    <view key="view" contentMode="scaleToFill" id="3">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="FVo-c5-SSf" customClass="BoardView">
+                                <rect key="frame" x="0.0" y="55" width="320" height="493"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Next colors:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SS-wg-ggD">
+                                <rect key="frame" x="20" y="20" width="99" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" id="JL9-xH-252" customClass="CellView">
+                                <rect key="frame" x="114" y="14" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="99K-sQ-dxH" customClass="CellView">
+                                <rect key="frame" x="155" y="14" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" id="P0e-Rf-kRK" customClass="CellView">
+                                <rect key="frame" x="196" y="14" width="33" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="boardView" destination="FVo-c5-SSf" id="otR-2h-mjf"/>
+                        <outletCollection property="previewCells" destination="JL9-xH-252" id="XQp-UH-ccc"/>
+                        <outletCollection property="previewCells" destination="99K-sQ-dxH" id="7O6-eR-xqd"/>
+                        <outletCollection property="previewCells" destination="P0e-Rf-kRK" id="MUk-wo-acn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
+    <classes>
+        <class className="BoardView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoardView.h"/>
+        </class>
+        <class className="BoardViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoardViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="boardView" candidateClass="BoardView"/>
+                <relationship kind="outletCollection" name="previewCells" candidateClass="CellView"/>
+            </relationships>
+        </class>
+        <class className="CellView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellView.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -46,12 +46,12 @@
 
 - (void)testAddsChipsAfterMove
 {
-	// First six numbers are alternating locations and color values of the initial chips
-	// Next six are for the ones placed after the first move
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 1, 0, 2, 5, 3, 0, 4, 0, 5, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 5, 0, 1, 2, 0, 0, 0, 3, 4, 5, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
+	NSLog(@"%@", [target toStringForLog]);
 	[target moveFromCell:0 toCell:9];
-	
+	NSLog(@"%@", [target toStringForLog]);
+
 	STAssertEqualObjects([target.cells objectAtIndex:0], [NSNull null], @"Wrong value in cell 0");
 	
 	for (int i = 0; i < target.cells.count; i++) {
@@ -83,8 +83,8 @@
 
 - (void)testHandlesFiveHorizontally
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 10, 0, 2, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults: 0, 0, 0, 0, 10, 2,
+					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -102,8 +102,8 @@
 
 - (void)testFindsHorizontalRunsAtRightEdge
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:8, 0, 10, 0, 6, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 8, 10, 6,
+					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0,  -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -121,8 +121,11 @@
 
 - (void)testHandlesMoreThanFiveHorizontally
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 10, 0, 2, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, 24, 0, 26, 0, 28, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 0, 10, 2,
+					 0, 0, 0, 16, 17, 18,
+					 0, 0, 0, 19, 20, 22,
+					 0, 0, 0, 24, 26, 28,
+					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -144,8 +147,8 @@
 
 - (void)testDifferentColorsDontCountAsRuns
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 10, 0, 2, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 0, 10, 2,
+					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -157,7 +160,8 @@
 
 - (void)testHandlesFiveByRandomPlacement
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 0, 1, 2,
+					 0, 0, 0, 3, 4, 5, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -176,24 +180,27 @@
 
 - (void)testHandlesFiveVertically
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 10, 0, 18, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, 31, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 0, 10, 18,
+					 0, 0, 0, 15, 16, 17,
+					 0, 0, 0, 19, 20, 22,
+					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:9];
 	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
-	[target moveFromCell:16 toCell:27];
+	[target moveFromCell:15 toCell:27];
 	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
-	[target moveFromCell:17 toCell:36];
+	[target moveFromCell:16 toCell:36];
 	// The row of 5 should be removed and no more cells should be placed.
 	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 }
 
 - (void)testHandlesFiveInRightDiagonal
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 11, 0, 20, 0, 16, 0, 17, 0,
-					 18, 0, 19, 0, 20, 0, 22, 0, 31, 0, -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 0, 11, 20,
+					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 41, 22,
+					 0, 0, 0, 31, 35, 36, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
@@ -204,17 +211,15 @@
 	[target moveFromCell:17 toCell:40];
 	// The row of 5 should be removed and no more cells should be placed.
 	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
-	
-	for (int i = 0; i < 5; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
-	}
 }
 
 - (void)testHandlesFiveInLeftDiagonal
 {
-	Randomizer *r = [[FakeRandomizer alloc] initWithResults:8, 0, 11, 0, 20, 0, 45, 0, 16, 0,
-					 18, 0, 19, 0, 22, 0, 23, 0, 31, 0, 44, 0 -1];
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 8, 11, 20,
+					 0, 0, 0, 45, 16, 18,
+					 0, 0, 0, 19, 22, 23,
+					 0, 0, 0, 31, 44, 50,
+					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
 	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");

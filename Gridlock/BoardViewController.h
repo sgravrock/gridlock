@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BoardViewController : UIViewController
+@class BoardView, CellView;
 
+@interface BoardViewController : UIViewController
+@property (nonatomic, weak) IBOutlet BoardView *boardView;
+@property (strong, nonatomic) IBOutletCollection(CellView) NSArray *previewCells;
 @end

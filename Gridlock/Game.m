@@ -17,6 +17,7 @@
 @property (nonatomic, strong) Randomizer *randomizer;
 @property (nonatomic, strong) NSMutableArray *cells;
 @property (nonatomic, strong) NSArray *colors;
+@property (nonatomic, strong) NSMutableArray *nextColors;
 - (UIColor *)randomColor;
 - (int)cellIndexAbove:(int)index;
 - (int)cellIndexBelow:(int)index;
@@ -42,6 +43,8 @@
 		self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor],
 					   [UIColor yellowColor], [UIColor orangeColor], [UIColor greenColor],
 					   [UIColor purpleColor], nil];
+		self.nextColors = [NSMutableArray arrayWithObjects:[self randomColor], [self randomColor],
+						   [self randomColor], nil];
 		self.cells = [NSMutableArray arrayWithCapacity:size * size];
 		
 		for (int i = 0; i < size * size; i++) {
@@ -212,18 +215,22 @@
 
 - (void)placeRandomChips
 {
-	// Randomly place three random colors.
+	// Randomly place up to three random colors.
 	int toPlace = MIN(3, [self freeCells]);
+	int placed = 0;
 	
-	while (toPlace > 0) {
+	while (placed < toPlace) {
 		int where = [self.randomizer randomBelow:size * size];
-		
+	
 		if ([self.cells objectAtIndex:where] == [NSNull null]) {
-			[self.cells replaceObjectAtIndex:where withObject:[self randomColor]];
-			toPlace--;
+			[self.cells replaceObjectAtIndex:where
+								  withObject:[self.nextColors objectAtIndex:placed++]];
 		}
 	}
-
+	
+	for (int i = 0; i < 3; i++ ) {
+		[self.nextColors replaceObjectAtIndex:i withObject:[self randomColor]];
+	}
 }
 
 - (UIColor *)randomColor

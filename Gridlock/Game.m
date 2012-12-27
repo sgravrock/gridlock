@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSMutableArray *cells;
 @property (nonatomic, strong) NSArray *colors;
 @property (nonatomic, strong) NSMutableArray *nextColors;
+@property (nonatomic) int score;
+
 - (UIColor *)randomColor;
 - (int)cellIndexAbove:(int)index;
 - (int)cellIndexBelow:(int)index;
@@ -39,6 +41,7 @@
 	
 	if (self) {
 		size = 9;
+		self.score = 0;
 		self.randomizer = randomizer;
 		self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor],
 					   [UIColor yellowColor], [UIColor orangeColor], [UIColor greenColor],
@@ -211,6 +214,10 @@
 	for (NSNumber *n in indexes) {
 		[self.cells replaceObjectAtIndex:[n intValue] withObject:[NSNull null]];
 	}
+	
+	// Score 10 points plus an extra 5 for each cell beyond 5
+	// e.g. a run of 6 is worth 15 points
+	self.score += 10 + (indexes.count - 5) * 5;
 }
 
 - (void)placeRandomChips

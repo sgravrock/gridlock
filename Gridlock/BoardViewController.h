@@ -13,4 +13,5 @@
 @interface BoardViewController : UIViewController
 @property (nonatomic, weak) IBOutlet BoardView *boardView;
 @property (strong, nonatomic) IBOutletCollection(CellView) NSArray *previewCells;
+@property (nonatomic, weak) IBOutlet UILabel *score;
 @end

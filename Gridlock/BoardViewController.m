@@ -16,7 +16,7 @@
 	int moveSrc;
 }
 @property (nonatomic, strong) Game *game;
-- (void)updateCells;
+- (void)updateView;
 @end
 
 @implementation BoardViewController
@@ -35,7 +35,7 @@
 
 - (void)viewDidLoad
 {
-	[self updateCells];
+	[self updateView];
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
 											 initWithTarget:self action:@selector(handleTap:)];
 	[self.boardView addGestureRecognizer:tapRecognizer];
@@ -79,7 +79,7 @@
 		if ([self.game freeCells] == 0) {
 			[self gameOver];
 		} else {
-			[self updateCells];
+			[self updateView];
 		}
 	}
 }
@@ -88,14 +88,15 @@
 {
 	[Alert showWithTitle:@"Game Over" message:@"" andThen:^{
 		self.game = [[Game alloc] init];
-		[self updateCells];
+		[self updateView];
 	}];
 }
 
-- (void)updateCells
+- (void)updateView
 {
 	[self copyColors:self.game.cells toViews:self.boardView.subviews];
 	[self copyColors:self.game.nextColors toViews:self.previewCells];
+	self.score.text = [NSString stringWithFormat:@"%d", self.game.score];
 }
 
 - (void)copyColors:(NSArray *)colors toViews:(NSArray *)views

@@ -21,6 +21,7 @@
 // The next three colors that will be placed somewhere on the board at random.
 // Each element is a UIColor.
 @property (nonatomic, readonly, strong) NSMutableArray *nextColors;
+@property (nonatomic, readonly) int score;
 
 - (int)freeCells;
 - (NSString *)toStringForLog;

@@ -44,7 +44,7 @@
 		self.score = 0;
 		self.randomizer = randomizer;
 		self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor],
-					   [UIColor yellowColor], [UIColor orangeColor], [UIColor greenColor],
+					   [UIColor magentaColor], [UIColor orangeColor], [UIColor greenColor],
 					   [UIColor purpleColor], nil];
 		self.nextColors = [NSMutableArray arrayWithObjects:[self randomColor], [self randomColor],
 						   [self randomColor], nil];

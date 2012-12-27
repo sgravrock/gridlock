@@ -47,8 +47,8 @@
 		// Figure out which subview (if any) was tapped.
 		CGPoint where = [sender locationInView:self.boardView];
 		
-		for (int i = 0; i < self.boardView.subviews.count; i++) {
-			CellView *cv = [self.boardView.subviews objectAtIndex:i];
+		for (int i = 0; i < self.boardView.cellViews.count; i++) {
+			CellView *cv = [self.boardView.cellViews objectAtIndex:i];
 			
 			if (CGRectContainsPoint(cv.frame, where)) {
 				[self handleTapInCell:cv atIndex:i];
@@ -65,7 +65,7 @@
 			return; // Can't move an empty cell.
 		}
 		
-		for (CellView *v in self.boardView.subviews) {
+		for (CellView *v in self.boardView.cellViews) {
 			v.isHighlighted = v == cellView;
 		}
 		
@@ -73,7 +73,7 @@
 	} else {
 		// The user selected the destinaton cell of a move.
 		[self.game moveFromCell:moveSrc toCell:cellIx];
-		[[self.boardView.subviews objectAtIndex:moveSrc] setIsHighlighted:NO];
+		[[self.boardView.cellViews objectAtIndex:moveSrc] setIsHighlighted:NO];
 		moveSrc = -1;
 		
 		if ([self.game freeCells] == 0) {
@@ -94,7 +94,7 @@
 
 - (void)updateView
 {
-	[self copyColors:self.game.cells toViews:self.boardView.subviews];
+	[self copyColors:self.game.cells toViews:self.boardView.cellViews];
 	[self copyColors:self.game.nextColors toViews:self.previewCells];
 	self.score.text = [NSString stringWithFormat:@"%d", self.game.score];
 }

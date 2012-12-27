@@ -18,9 +18,7 @@
 	self = [super initWithFrame:frame];
 
 	if (self) {
-		self.layer.borderColor = [UIColor blackColor].CGColor;
-		self.layer.borderWidth = 0.5f;
-		self.layer.backgroundColor = [UIColor grayColor].CGColor;
+		self.opaque = NO;
 	}
 
 	return self;
@@ -43,7 +41,7 @@
 	CGContextRef ctx = UIGraphicsGetCurrentContext();
 	
 	// TODO: Higlight cells in a way that isn't so crude.
-	UIColor *bgColor = self.isHighlighted ? [UIColor blackColor] : [UIColor whiteColor];
+	UIColor *bgColor = self.isHighlighted ? [UIColor blackColor] : [UIColor clearColor];
 	CGContextSetFillColorWithColor(ctx, bgColor.CGColor);
 	
 	CGContextFillRect(ctx, self.bounds);

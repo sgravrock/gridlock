@@ -233,5 +233,21 @@
 	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 }
 
+- (void)testHandlesFiveInLeftDiagonalAtLeftEdge
+{
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults:0, 0, 0, 36, 28, 0,
+					 0, 0, 0, 12, 14, 15,
+					 0, 0, 0, -1];
+	Game *target = [[Game alloc] initWithRandomizer:r];
+	
+	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	[target moveFromCell:0 toCell:20];
+	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	[target moveFromCell:14 toCell:4];
+	// The row of 5 should be removed and no more cells should be placed.
+	STAssertEquals([target freeCells], 9 * 9 - 6 + 5, @"Wrong number of free cells");
+}
+
+
 // TODO: verify intersections
 @end

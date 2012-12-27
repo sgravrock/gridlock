@@ -153,12 +153,14 @@
 					// Diagonal down and to the right
 					run = [self runFromCellIndex:y * size + x offset:size + 1];
 				}
-			} else if (!run) {
-				// Diagonal down and to the left
-				run = [self runFromCellIndex:y * size + x offset:size - 1];
-
+				
+				if (!run) {
+					// Diagonal up and to the right
+					run = [self runFromCellIndex:y * size + x offset:-1 * (size - 1)];
+					
+				}
 			}
-			
+						
 			if (run) {
 				return run;
 			}

@@ -19,6 +19,7 @@
 
 	if (self) {
 		self.opaque = NO;
+		self.userInteractionEnabled = YES;
 	}
 
 	return self;

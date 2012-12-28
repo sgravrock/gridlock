@@ -14,6 +14,8 @@
 
 @interface BoardViewController () {
 	int moveSrc;
+	CGPoint dragOriginalCenter;
+	BOOL dragging;
 }
 @property (nonatomic, strong) Game *game;
 - (void)updateView;
@@ -27,6 +29,7 @@
 	
 	if (self) {
 		moveSrc = -1;
+		dragging = NO;
 		self.game = [[Game alloc] init];
 	}
 	
@@ -39,16 +42,24 @@
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
 											 initWithTarget:self action:@selector(handleTap:)];
 	[self.boardView addGestureRecognizer:tapRecognizer];
+	[self.view addGestureRecognizer:tapRecognizer];
+	
+	for (CellView *c in self.boardView.cellViews	) {
+		UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc]
+												  initWithTarget:self action:@selector(handleDrag:)];
+		[c addGestureRecognizer:dragRecognizer];
+		[c setUserInteractionEnabled:YES];
+	}
 }
 
 - (void)handleTap:(UITapGestureRecognizer *)sender
 {
-	if (sender.state == UIGestureRecognizerStateEnded) {
+	if (sender.state == UIGestureRecognizerStateEnded && !dragging) {
 		// Figure out which subview (if any) was tapped.
 		CGPoint where = [sender locationInView:self.boardView];
 		
-		for (int i = 0; i < self.boardView.subviews.count; i++) {
-			CellView *cv = [self.boardView.subviews objectAtIndex:i];
+		for (int i = 0; i < self.boardView.cellViews.count; i++) {
+			CellView *cv = [self.boardView.cellViews objectAtIndex:i];
 			
 			if (CGRectContainsPoint(cv.frame, where)) {
 				[self handleTapInCell:cv atIndex:i];
@@ -65,24 +76,83 @@
 			return; // Can't move an empty cell.
 		}
 		
-		for (CellView *v in self.boardView.subviews) {
+		for (CellView *v in self.boardView.cellViews) {
 			v.isHighlighted = v == cellView;
 		}
 		
 		moveSrc = cellIx;
 	} else {
 		// The user selected the destinaton cell of a move.
-		[self.game moveFromCell:moveSrc toCell:cellIx];
-		[[self.boardView.subviews objectAtIndex:moveSrc] setIsHighlighted:NO];
+		int src = moveSrc;
 		moveSrc = -1;
-		
-		if ([self.game freeCells] == 0) {
-			[self gameOver];
-		} else {
-			[self updateView];
-		}
+		[[self.boardView.cellViews objectAtIndex:src] setIsHighlighted:NO];
+		[self moveFromCell:src toCell:cellIx];
 	}
 }
+
+- (void)handleDrag:(UIPanGestureRecognizer *)dragGesture
+{
+	// Drag only if we're not in the middle of a tap-driven move.
+	if (moveSrc != -1) {
+		return;
+	}
+	
+	CellView *cv = (CellView *)dragGesture.view;
+	CGPoint translation = [dragGesture translationInView:self.view];
+	int srcIx, destIx;
+	
+	switch (dragGesture.state) {
+		case UIGestureRecognizerStateBegan:
+			dragOriginalCenter = cv.center;
+			dragging = YES;
+			break;
+			
+		case UIGestureRecognizerStateChanged:
+			NSLog(@"drag %fx%f", translation.x, translation.y);
+			cv.center = CGPointMake(dragOriginalCenter.x + translation.x,
+									dragOriginalCenter.y + translation.y);
+			break;
+			
+		case UIGestureRecognizerStateEnded:
+			destIx = [self indexOfCellViewUnderCellView:cv];
+			
+			if (destIx != NSNotFound) {
+				srcIx = [self.boardView.cellViews indexOfObject:cv];
+				[self moveFromCell:srcIx toCell:destIx];
+			}
+			
+		case UIGestureRecognizerStateFailed:
+		case UIGestureRecognizerStateCancelled:
+			cv.center = dragOriginalCenter;
+			dragging = NO;
+			
+		case UIGestureRecognizerStatePossible:
+			break;
+			
+	}
+}
+
+- (int)indexOfCellViewUnderCellView:(CellView *)src
+{
+	src.userInteractionEnabled = NO; // prevents src from being returned from hitTest:withEvent:
+	id target = [self.boardView hitTest:src.center withEvent:nil];
+	src.userInteractionEnabled = YES;
+	
+	int result = [self.boardView.cellViews indexOfObject:target];
+	return result;
+}
+
+- (void)moveFromCell:(int)srcIx toCell:(int)destIx
+{
+	[self.game moveFromCell:srcIx toCell:destIx];
+	
+	if ([self.game freeCells] == 0) {
+		[self gameOver];
+	} else {
+		[self updateView];
+	}
+}
+
 
 - (void)gameOver
 {
@@ -94,7 +164,7 @@
 
 - (void)updateView
 {
-	[self copyColors:self.game.cells toViews:self.boardView.subviews];
+	[self copyColors:self.game.cells toViews:self.boardView.cellViews];
 	[self copyColors:self.game.nextColors toViews:self.previewCells];
 	self.score.text = [NSString stringWithFormat:@"%d", self.game.score];
 }
@@ -117,4 +187,5 @@
     [self setPreviewCells:nil];
     [super viewDidUnload];
 }
+
 @end

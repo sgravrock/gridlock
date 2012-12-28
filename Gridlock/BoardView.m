@@ -19,9 +19,15 @@
 	self = [super initWithCoder:decoder];
 	
 	if (self) {
+		NSMutableArray *views = [NSMutableArray arrayWithCapacity:SIZE * SIZE];
+		
 		for (int i = 0; i < SIZE * SIZE; i++) {
-			[self addSubview:[[CellView alloc] initWithFrame:CGRectZero]];
+			CellView *cv = [[CellView alloc] initWithFrame:CGRectZero];
+			[self addSubview:cv];
+			[views addObject:cv];
 		}
+		
+		self.cellViews = views;
 	}
 	
 	return self;
@@ -35,7 +41,7 @@
 		for (int j = 0; j < SIZE; j++) {
 			CGRect frame = CGRectMake(j * cellSize + PADDING , i * cellSize + PADDING,
 									  cellSize, cellSize);
-			[[self.subviews objectAtIndex:i * SIZE + j] setFrame:frame];
+			[[self.cellViews objectAtIndex:i * SIZE + j] setFrame:frame];
 		}
 	}
 }

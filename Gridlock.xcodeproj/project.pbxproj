@@ -10,7 +10,6 @@
 		AA07D0A61674317300C6FCB3 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D0A51674317300C6FCB3 /* Game.m */; };
 		AA311970167413FC008B33DC /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31196F167413FC008B33DC /* BoardView.m */; };
 		AA3119731674165C008B33DC /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3119721674165C008B33DC /* CellView.m */; };
-		AA865334168CEFE400E68411 /* grid.png in Resources */ = {isa = PBXBuildFile; fileRef = AA865333168CEFE400E68411 /* grid.png */; };
 		AA8A20541674108B00325C4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
 		AA8A20561674108B00325C4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20551674108B00325C4F /* Foundation.framework */; };
 		AA8A20581674108B00325C4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20571674108B00325C4F /* CoreGraphics.framework */; };
@@ -51,7 +50,6 @@
 		AA31196F167413FC008B33DC /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		AA3119711674165C008B33DC /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
 		AA3119721674165C008B33DC /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
-		AA865333168CEFE400E68411 /* grid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grid.png; sourceTree = "<group>"; };
 		AA865336168CF0D500E68411 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA8A204F1674108B00325C4F /* Gridlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gridlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8A20531674108B00325C4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -112,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				AA865336168CF0D500E68411 /* QuartzCore.framework */,
-				AA865333168CEFE400E68411 /* grid.png */,
 				AA8A20591674108B00325C4F /* Gridlock */,
 				AAB49104167B09CD00C20263 /* Unit Tests */,
 				AA8A20521674108B00325C4F /* Frameworks */,
@@ -270,7 +267,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA865334168CEFE400E68411 /* grid.png in Resources */,
 				AA8A205E1674108B00325C4F /* InfoPlist.strings in Resources */,
 				AA8A20661674108B00325C4F /* Default.png in Resources */,
 				AA8A20681674108B00325C4F /* Default@2x.png in Resources */,

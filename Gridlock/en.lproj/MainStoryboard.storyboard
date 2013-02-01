@@ -15,12 +15,6 @@
                             <view contentMode="scaleToFill" id="FVo-c5-SSf" customClass="BoardView">
                                 <rect key="frame" x="0.0" y="90" width="320" height="458"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="top" image="grid.png" id="xxd-hH-T1f">
-                                        <rect key="frame" x="0.0" y="9" width="320" height="299"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Next colors:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1SS-wg-ggD">
@@ -74,25 +68,6 @@
             </objects>
         </scene>
     </scenes>
-    <resources>
-        <image name="grid.png" width="320" height="299"/>
-    </resources>
-    <classes>
-        <class className="BoardView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoardView.h"/>
-        </class>
-        <class className="BoardViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BoardViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="boardView" candidateClass="BoardView"/>
-                <relationship kind="outlet" name="score" candidateClass="UILabel"/>
-                <relationship kind="outletCollection" name="previewCells" candidateClass="CellView"/>
-            </relationships>
-        </class>
-        <class className="CellView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CellView.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

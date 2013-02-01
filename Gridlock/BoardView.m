@@ -10,7 +10,7 @@
 #import "CellView.h"
 
 #define SIZE 9
-#define PADDING 10.0f
+#define PADDING 2.5f
 
 @implementation BoardView
 
@@ -35,7 +35,7 @@
 
 - (void)layoutSubviews
 {
-	CGFloat cellSize = floor((self.bounds.size.width - 2 * PADDING) / (float)SIZE);
+	CGFloat cellSize = [self cellSize];
 	
 	for (int i = 0; i < SIZE; i++) {
 		for (int j = 0; j < SIZE; j++) {
@@ -45,5 +45,33 @@
 		}
 	}
 }
+
+- (void)drawRect:(CGRect)rect
+{
+	// Draw horizontal and vertical gridlines
+	CGFloat cellSize = [self cellSize];
+	CGContextRef ctx = UIGraphicsGetCurrentContext();
+	CGContextSetLineWidth(ctx, 1.0);
+
+	for (int i = 0; i <= SIZE; i++) {
+		CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+		CGContextMoveToPoint(ctx, PADDING, i * cellSize + PADDING);
+		CGContextAddLineToPoint(ctx, self.bounds.size.width - PADDING, i * cellSize + PADDING);
+		CGContextStrokePath(ctx);
+	}
+	
+	for (int i = 0; i <= SIZE; i++) {
+		CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+		CGContextMoveToPoint(ctx, i * cellSize + PADDING, PADDING);
+		CGContextAddLineToPoint(ctx, i * cellSize + PADDING, self.bounds.size.width - PADDING);
+		CGContextStrokePath(ctx);
+	}
+}
+
+- (CGFloat)cellSize
+{
+	return floor((self.bounds.size.width - 2 * PADDING) / (float)SIZE);
+}
+
 
 @end

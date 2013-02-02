@@ -37,6 +37,20 @@
 
 - (id)initWithRandomizer:(Randomizer *)randomizer
 {
+	self = [self initWithRandomizer:randomizer cells:nil nextColors:nil];
+	
+	if (self) {
+		[self placeRandomChips];
+	}
+	
+	return self;
+}
+
+// Designated initializer. cells and nextColors may be nil.
+- (id)initWithRandomizer:(Randomizer *)randomizer
+				   cells:(NSMutableArray *)cells
+			  nextColors:(NSMutableArray *)nextColors
+{
 	self = [super init];
 	
 	if (self) {
@@ -46,19 +60,50 @@
 		self.colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor blueColor],
 					   [UIColor magentaColor], [UIColor orangeColor], [UIColor greenColor],
 					   [UIColor purpleColor], nil];
-		self.nextColors = [NSMutableArray arrayWithObjects:[self randomColor], [self randomColor],
-						   [self randomColor], nil];
-		self.cells = [NSMutableArray arrayWithCapacity:size * size];
 		
-		for (int i = 0; i < size * size; i++) {
-			[self.cells addObject:[NSNull null]];
+		if (cells) {
+			self.cells = cells;
+		} else {
+			self.cells = [NSMutableArray arrayWithCapacity:size * size];
+			
+			for (int i = 0; i < size * size; i++) {
+				[self.cells addObject:[NSNull null]];
+			}
 		}
 		
-		[self placeRandomChips];
+		if (nextColors) {
+			self.nextColors = nextColors;
+		} else {
+			self.nextColors = [NSMutableArray arrayWithObjects:[self randomColor],
+							   [self randomColor], [self randomColor], nil];
+		}
+	}
+	
+	return self;
+
+}
+
+#pragma mark - NSCoding
+- (id)initWithCoder:(NSCoder *)coder
+{
+	self = [self initWithRandomizer:[[Randomizer alloc] init]
+							  cells:[coder decodeObjectForKey:@"cells"]
+						 nextColors:[coder decodeObjectForKey:@"nextColors"]];
+	
+	if (self) {
+		self.score = [coder decodeIntForKey:@"score"];
 	}
 	
 	return self;
 }
+
+- (void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:self.cells forKey:@"cells"];
+	[coder encodeObject:self.nextColors forKey:@"nextColors"];
+	[coder encodeInt:self.score forKey:@"score"];
+}
+#pragma mark -
 
 - (int)size
 {

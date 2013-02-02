@@ -11,6 +11,7 @@
 #import "Game.h"
 #import "CellView.h"
 #import "Alert.h"
+#import "AppDelegate.h"
 
 @interface BoardViewController () {
 	int moveSrc;
@@ -30,7 +31,6 @@
 	if (self) {
 		moveSrc = -1;
 		dragging = NO;
-		self.game = [[Game alloc] init];
 	}
 	
 	return self;
@@ -38,17 +38,44 @@
 
 - (void)viewDidLoad
 {
+	// Create the game model, using saved game state if available
+	self.game = [BoardViewController restoreSavedState];
+	
+	if (!self.game) {
+		self.game = [[Game alloc] init];
+	}
+
+	// Set up subviews and gesture recognizers
 	[self updateView];
 	UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc]
 											 initWithTarget:self action:@selector(handleTap:)];
 	[self.boardView addGestureRecognizer:tapRecognizer];
 	[self.view addGestureRecognizer:tapRecognizer];
 	
-	for (CellView *c in self.boardView.cellViews	) {
+	for (CellView *c in self.boardView.cellViews) {
 		UIPanGestureRecognizer *dragRecognizer = [[UIPanGestureRecognizer alloc]
 												  initWithTarget:self action:@selector(handleDrag:)];
 		[c addGestureRecognizer:dragRecognizer];
 		[c setUserInteractionEnabled:YES];
+	}
+}
+
++ (Game *)restoreSavedState
+{
+	AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+	NSData *gameState = [appDelegate savedGameState];
+	
+	if (!gameState) {
+		return nil;
+	}
+
+	@try {
+		NSKeyedUnarchiver *coder = [[NSKeyedUnarchiver alloc] initForReadingWithData:gameState];
+		return [[Game alloc] initWithCoder:coder];
+	}
+	@catch (NSException *ex) {
+		NSLog(@"Error restoring saved game state: %@", ex);
+		return nil;
 	}
 }
 

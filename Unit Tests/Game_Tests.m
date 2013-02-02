@@ -10,6 +10,11 @@
 #import "Game.h"
 #import "FakeRandomizer.h"
 
+@interface Game()
+@property (nonatomic, strong) NSArray *colors;
+@property (nonatomic) int score;
+@end;
+
 @implementation Game_Tests
 
 - (void)testAllowsMoveToEmptyReachableCell
@@ -248,6 +253,22 @@
 	STAssertEquals([target freeCells], 9 * 9 - 6 + 5, @"Wrong number of free cells");
 }
 
+- (void)testSerializesAndDeserializes
+{
+	Randomizer *r = [[FakeRandomizer alloc] initWithResults: 0, 2, 4, 0, 1, 2, 0, 0, 0, -1];
+	Game *oldGame = [[Game alloc] initWithRandomizer:r];
+	oldGame.score = 42;
+	NSMutableData *data = [NSMutableData data];
+	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+	[oldGame encodeWithCoder:archiver];
+	[archiver finishEncoding];
+	NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
+	Game *newGame = [[Game alloc] initWithCoder:unarchiver];
+	
+	STAssertEqualObjects(newGame.cells, oldGame.cells, @"Cells don't match");
+	STAssertEqualObjects(newGame.nextColors, oldGame.nextColors, @"Next colors don't match");
+	STAssertEquals(newGame.score, oldGame.score, @"Score doesnt match");
+}
 
 // TODO: verify intersections
 @end

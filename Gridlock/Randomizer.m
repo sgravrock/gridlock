@@ -12,8 +12,14 @@
 
 - (id)init
 {
-	srand(time(NULL));
-	return [super init];
+	self = [super init];
+	
+	if (self) {
+		srand(time(NULL));
+		return [super init];
+	}
+	
+	return self;
 }
 
 - (int)randomBelow:(int)limit

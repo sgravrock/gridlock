@@ -12,4 +12,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+// Returns the last saved game state, or nil if there is none.
+- (NSData *)savedGameState;
+
 @end

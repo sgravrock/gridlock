@@ -38,6 +38,15 @@
 	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Cell was changed");
 }
 
+- (void)testMoveFromEmptyCellDoesNothing
+{
+	Game *target = [[Game alloc] init];
+	int initialCount = [self numOccupiedCellsInGame:target];
+	[target moveFromCell:0 toCell:1];
+	// The move would not have completed a run, so it would have added new chips.
+	STAssertEquals([self numOccupiedCellsInGame:target], initialCount, @"Move was performed");
+}
+
 - (void)testRejectsMoveToOccupiedCell
 {
 	Game *target = [[Game alloc] init];
@@ -268,6 +277,19 @@
 	STAssertEqualObjects(newGame.cells, oldGame.cells, @"Cells don't match");
 	STAssertEqualObjects(newGame.nextColors, oldGame.nextColors, @"Next colors don't match");
 	STAssertEquals(newGame.score, oldGame.score, @"Score doesnt match");
+}
+
+- (int)numOccupiedCellsInGame:(Game *)game
+{
+	int n = 0;
+	
+	for (id cell in game.cells) {
+		if (cell != [NSNull null]) {
+			n++;
+		}
+	}
+	
+	return n;
 }
 
 // TODO: verify intersections

@@ -125,7 +125,8 @@
 
 - (void)moveFromCell:(int)srcIx toCell:(int)destIx
 {
-	if ([self.cells objectAtIndex:destIx] != [NSNull null] ||
+	if ([self.cells objectAtIndex:srcIx] == [NSNull null] ||
+		[self.cells objectAtIndex:destIx] != [NSNull null] ||
 		![self canReachCell:destIx fromCell:srcIx]) {
 		return;
 	}

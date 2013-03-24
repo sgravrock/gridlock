@@ -135,7 +135,6 @@
 			break;
 			
 		case UIGestureRecognizerStateChanged:
-			NSLog(@"drag %fx%f", translation.x, translation.y);
 			cv.center = CGPointMake(dragOriginalCenter.x + translation.x,
 									dragOriginalCenter.y + translation.y);
 			break;

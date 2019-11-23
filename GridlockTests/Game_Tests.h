@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Steve Gravrock. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface Game_Tests : SenTestCase
+@interface Game_Tests : XCTestCase
 
 @end

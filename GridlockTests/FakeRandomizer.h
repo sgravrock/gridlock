@@ -13,7 +13,7 @@
 @interface FakeRandomizer : Randomizer
 
 // Takes a -1-terminated list of results to return from randomBelow:
-- (id)initWithResults:(int)firstResult, ...;
+- (id)initWithResults:(NSUInteger)firstResult, ...;
 
 - (void)log;
 

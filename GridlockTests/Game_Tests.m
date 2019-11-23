@@ -12,7 +12,7 @@
 
 @interface Game()
 @property (nonatomic, strong) NSArray *colors;
-@property (nonatomic) int score;
+@property (nonatomic) NSUInteger score;
 @end;
 
 @implementation Game_Tests
@@ -24,8 +24,8 @@
 	[target.cells replaceObjectAtIndex:1 withObject:[NSNull null]];
 	[target moveFromCell:0 toCell:1];
 	
-	STAssertEqualObjects([target.cells objectAtIndex:0], [NSNull null], @"Source wasn't cleared");
-	STAssertEqualObjects([target.cells objectAtIndex:1], [UIColor blueColor],
+	XCTAssertEqualObjects([target.cells objectAtIndex:0], [NSNull null], @"Source wasn't cleared");
+	XCTAssertEqualObjects([target.cells objectAtIndex:1], [UIColor blueColor],
 						 @"Destination wasn't set");
 }
 
@@ -35,7 +35,7 @@
 	[target.cells replaceObjectAtIndex:0 withObject:[UIColor blueColor]];
 	[target moveFromCell:0 toCell:0];
 	
-	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Cell was changed");
+	XCTAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Cell was changed");
 }
 
 - (void)testMoveFromEmptyCellDoesNothing
@@ -44,7 +44,7 @@
 	int initialCount = [self numOccupiedCellsInGame:target];
 	[target moveFromCell:0 toCell:1];
 	// The move would not have completed a run, so it would have added new chips.
-	STAssertEquals([self numOccupiedCellsInGame:target], initialCount, @"Move was performed");
+	XCTAssertEqual([self numOccupiedCellsInGame:target], initialCount, @"Move was performed");
 }
 
 - (void)testRejectsMoveToOccupiedCell
@@ -53,8 +53,8 @@
 	[target.cells replaceObjectAtIndex:0 withObject:[UIColor blueColor]];
 	[target.cells replaceObjectAtIndex:1 withObject:[UIColor redColor]];
 	[target moveFromCell:0 toCell:1];
-	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
-	STAssertEqualObjects([target.cells objectAtIndex:1], [UIColor redColor],
+	XCTAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
+	XCTAssertEqualObjects([target.cells objectAtIndex:1], [UIColor redColor],
 						 @"Destination was changed");
 }
 
@@ -66,15 +66,15 @@
 	[target moveFromCell:0 toCell:9];
 	NSLog(@"%@", [target toStringForLog]);
 
-	STAssertEqualObjects([target.cells objectAtIndex:0], [NSNull null], @"Wrong value in cell 0");
+	XCTAssertEqualObjects([target.cells objectAtIndex:0], [NSNull null], @"Wrong value in cell 0");
 	
 	for (int i = 0; i < target.cells.count; i++) {
 		if (i == 9 || (i > 0 && i < 6)) {
-			STAssertFalse([[target.cells objectAtIndex:i] isEqual:[NSNull null]],
-						  [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+			XCTAssertFalse([[target.cells objectAtIndex:i] isEqual:[NSNull null]],
+						  @"Wrong value in cell %d", i);
 		} else {
-			STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-								 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+			XCTAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+								 @"Wrong value in cell %d", i);
 		}
 	}
 }
@@ -91,8 +91,8 @@
 	[target.cells replaceObjectAtIndex:10 withObject:[UIColor blueColor]];
 	[target.cells replaceObjectAtIndex:18 withObject:[UIColor blueColor]];
 	[target moveFromCell:0 toCell:11];
-	STAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
-	STAssertEqualObjects([target.cells objectAtIndex:11], [NSNull null], @"Destination was changed");
+	XCTAssertEqualObjects([target.cells objectAtIndex:0], [UIColor blueColor], @"Source was changed");
+	XCTAssertEqualObjects([target.cells objectAtIndex:11], [NSNull null], @"Destination was changed");
 }
 
 - (void)testHandlesFiveHorizontally
@@ -101,16 +101,16 @@
 					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:1];
 	[target moveFromCell:16 toCell:3];
 	[target moveFromCell:17 toCell:4];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 	
 	for (int i = 0; i < 5; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+		XCTAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+							 @"Wrong value in cell %d", i);
 	}
 }
 
@@ -120,16 +120,16 @@
 					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0,  -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:7];
 	[target moveFromCell:16 toCell:5];
 	[target moveFromCell:17 toCell:4];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 	
 	for (int i = 4; i < 9; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+		XCTAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+							 @"Wrong value in cell %d", i);
 	}
 }
 
@@ -142,20 +142,20 @@
 					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:1];
-	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
 	[target moveFromCell:16 toCell:3];
-	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
 	[target moveFromCell:17 toCell:5];
-	STAssertEquals([target freeCells], 9 * 9 - 12, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 12, @"Wrong number of free cells");
 	[target moveFromCell:18 toCell:4];
 	// The row of 6 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 12 + 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 12 + 6, @"Wrong number of free cells");
 	
 	for (int i = 0; i < 6; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+		XCTAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+							 @"Wrong value in cell %d", i);
 	}
 }
 
@@ -165,11 +165,11 @@
 					 0, 0, 0, 16, 17, 18, 0, 0, 0, 19, 20, 22, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:1];
 	[target moveFromCell:16 toCell:3];
 	[target moveFromCell:17 toCell:4];
-	STAssertEquals([target freeCells], 9 * 9 - 4, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 4, @"Wrong number of free cells");
 }
 
 - (void)testHandlesFiveByRandomPlacement
@@ -178,16 +178,16 @@
 					 0, 0, 0, 3, 4, 5, 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:0 toCell:11];
 	
 	// The cells filled at the end of the last move completed a row of 5.
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 1, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 1, @"Wrong number of free cells");
 	
 	for (int i = 1; i < 7; i++) {
-		STAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
-							 [NSString stringWithFormat:@"Wrong value in cell %d", i]);
+		XCTAssertEqualObjects([target.cells objectAtIndex:i], [NSNull null],
+							 @"Wrong value in cell %d", i);
 	}
 	
 }
@@ -200,14 +200,14 @@
 					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:10 toCell:9];
-	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
 	[target moveFromCell:15 toCell:27];
-	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
 	[target moveFromCell:16 toCell:36];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 }
 
 - (void)testHandlesFiveInRightDiagonal
@@ -217,14 +217,14 @@
 					 0, 0, 0, 31, 35, 36, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:11 toCell:10];
-	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
 	[target moveFromCell:16 toCell:30];
-	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
 	[target moveFromCell:17 toCell:40];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 }
 
 - (void)testHandlesFiveInLeftDiagonal
@@ -236,15 +236,15 @@
 					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:11 toCell:24];
-	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
 	[target moveFromCell:45 toCell:32];
-	STAssertEquals([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9, @"Wrong number of free cells");
 	NSLog(@"%@", [target toStringForLog]);
 	[target moveFromCell:18 toCell:40];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 9 + 5, @"Wrong number of free cells");
 }
 
 - (void)testHandlesFiveInLeftDiagonalAtLeftEdge
@@ -254,12 +254,12 @@
 					 0, 0, 0, -1];
 	Game *target = [[Game alloc] initWithRandomizer:r];
 	
-	STAssertEquals([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 3, @"Wrong number of free cells");
 	[target moveFromCell:0 toCell:20];
-	STAssertEquals([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6, @"Wrong number of free cells");
 	[target moveFromCell:14 toCell:4];
 	// The row of 5 should be removed and no more cells should be placed.
-	STAssertEquals([target freeCells], 9 * 9 - 6 + 5, @"Wrong number of free cells");
+	XCTAssertEqual([target freeCells], 9 * 9 - 6 + 5, @"Wrong number of free cells");
 }
 
 - (void)testSerializesAndDeserializes
@@ -274,9 +274,9 @@
 	NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
 	Game *newGame = [[Game alloc] initWithCoder:unarchiver];
 	
-	STAssertEqualObjects(newGame.cells, oldGame.cells, @"Cells don't match");
-	STAssertEqualObjects(newGame.nextColors, oldGame.nextColors, @"Next colors don't match");
-	STAssertEquals(newGame.score, oldGame.score, @"Score doesnt match");
+	XCTAssertEqualObjects(newGame.cells, oldGame.cells, @"Cells don't match");
+	XCTAssertEqualObjects(newGame.nextColors, oldGame.nextColors, @"Next colors don't match");
+	XCTAssertEqual(newGame.score, oldGame.score, @"Score doesnt match");
 }
 
 - (int)numOccupiedCellsInGame:(Game *)game

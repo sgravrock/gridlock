@@ -10,6 +10,6 @@
 
 @interface Randomizer : NSObject
 
-- (int)randomBelow:(int)limit;
+- (NSUInteger)randomBelow:(NSUInteger)limit;
 
 @end

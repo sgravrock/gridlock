@@ -10,6 +10,9 @@
 		AA07D0A61674317300C6FCB3 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D0A51674317300C6FCB3 /* Game.m */; };
 		AA311970167413FC008B33DC /* BoardView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA31196F167413FC008B33DC /* BoardView.m */; };
 		AA3119731674165C008B33DC /* CellView.m in Sources */ = {isa = PBXBuildFile; fileRef = AA3119721674165C008B33DC /* CellView.m */; };
+		AA7208142388CD5700C8D109 /* GridlockTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA7208132388CD5700C8D109 /* GridlockTests.m */; };
+		AA72081F2388CD9600C8D109 /* FakeRandomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AA72081D2388CD9600C8D109 /* FakeRandomizer.m */; };
+		AA7208202388CD9600C8D109 /* Game_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AA72081E2388CD9600C8D109 /* Game_Tests.m */; };
 		AA8A20541674108B00325C4F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
 		AA8A20561674108B00325C4F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20551674108B00325C4F /* Foundation.framework */; };
 		AA8A20581674108B00325C4F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20571674108B00325C4F /* CoreGraphics.framework */; };
@@ -22,19 +25,11 @@
 		AA8A206D1674108B00325C4F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA8A206B1674108B00325C4F /* MainStoryboard.storyboard */; };
 		AA8A20701674108B00325C4F /* BoardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AA8A206F1674108B00325C4F /* BoardViewController.m */; };
 		AAA7CC1A167B3A0300C7C8B5 /* Alert.m in Sources */ = {isa = PBXBuildFile; fileRef = AAA7CC19167B3A0300C7C8B5 /* Alert.m */; };
-		AAB49101167B09CD00C20263 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AAB49100167B09CD00C20263 /* SenTestingKit.framework */; };
-		AAB49102167B09CD00C20263 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20531674108B00325C4F /* UIKit.framework */; };
-		AAB49103167B09CD00C20263 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8A20551674108B00325C4F /* Foundation.framework */; };
-		AAB49109167B09CD00C20263 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AAB49107167B09CD00C20263 /* InfoPlist.strings */; };
-		AAB49116167B0B6700C20263 /* Game_Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB49115167B0B6700C20263 /* Game_Tests.m */; };
-		AAB49117167B0DFF00C20263 /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = AA07D0A51674317300C6FCB3 /* Game.m */; };
 		AAB73A8B167B273100D97A6A /* Randomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8A167B273100D97A6A /* Randomizer.m */; };
-		AAB73A8C167B273100D97A6A /* Randomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8A167B273100D97A6A /* Randomizer.m */; };
-		AAB73A90167B28F900D97A6A /* FakeRandomizer.m in Sources */ = {isa = PBXBuildFile; fileRef = AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		AAB49112167B09DE00C20263 /* PBXContainerItemProxy */ = {
+		AA7208162388CD5700C8D109 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = AA8A20461674108A00325C4F /* Project object */;
 			proxyType = 1;
@@ -50,6 +45,13 @@
 		AA31196F167413FC008B33DC /* BoardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoardView.m; sourceTree = "<group>"; };
 		AA3119711674165C008B33DC /* CellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellView.h; sourceTree = "<group>"; };
 		AA3119721674165C008B33DC /* CellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellView.m; sourceTree = "<group>"; };
+		AA7208112388CD5700C8D109 /* GridlockTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GridlockTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA7208132388CD5700C8D109 /* GridlockTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GridlockTests.m; sourceTree = "<group>"; };
+		AA7208152388CD5700C8D109 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA72081B2388CD9600C8D109 /* FakeRandomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRandomizer.h; sourceTree = "<group>"; };
+		AA72081C2388CD9600C8D109 /* Game_Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game_Tests.h; sourceTree = "<group>"; };
+		AA72081D2388CD9600C8D109 /* FakeRandomizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRandomizer.m; sourceTree = "<group>"; };
+		AA72081E2388CD9600C8D109 /* Game_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game_Tests.m; sourceTree = "<group>"; };
 		AA865336168CF0D500E68411 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		AA8A204F1674108B00325C4F /* Gridlock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gridlock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA8A20531674108B00325C4F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -69,20 +71,19 @@
 		AA8A206F1674108B00325C4F /* BoardViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BoardViewController.m; sourceTree = "<group>"; };
 		AAA7CC18167B3A0300C7C8B5 /* Alert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Alert.h; sourceTree = "<group>"; };
 		AAA7CC19167B3A0300C7C8B5 /* Alert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Alert.m; sourceTree = "<group>"; };
-		AAB490FF167B09CD00C20263 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAB49100167B09CD00C20263 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		AAB49106167B09CD00C20263 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
-		AAB49108167B09CD00C20263 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AAB4910D167B09CD00C20263 /* Unit Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Unit Tests-Prefix.pch"; sourceTree = "<group>"; };
-		AAB49114167B0B6700C20263 /* Game_Tests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Game_Tests.h; sourceTree = "<group>"; };
-		AAB49115167B0B6700C20263 /* Game_Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Game_Tests.m; sourceTree = "<group>"; };
 		AAB73A89167B273100D97A6A /* Randomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Randomizer.h; sourceTree = "<group>"; };
 		AAB73A8A167B273100D97A6A /* Randomizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Randomizer.m; sourceTree = "<group>"; };
-		AAB73A8E167B28F900D97A6A /* FakeRandomizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FakeRandomizer.h; sourceTree = "<group>"; };
-		AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FakeRandomizer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		AA72080E2388CD5700C8D109 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA8A204C1674108A00325C4F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,25 +94,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAB490FB167B09CD00C20263 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAB49101167B09CD00C20263 /* SenTestingKit.framework in Frameworks */,
-				AAB49102167B09CD00C20263 /* UIKit.framework in Frameworks */,
-				AAB49103167B09CD00C20263 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AA7208122388CD5700C8D109 /* GridlockTests */ = {
+			isa = PBXGroup;
+			children = (
+				AA72081B2388CD9600C8D109 /* FakeRandomizer.h */,
+				AA72081D2388CD9600C8D109 /* FakeRandomizer.m */,
+				AA72081C2388CD9600C8D109 /* Game_Tests.h */,
+				AA72081E2388CD9600C8D109 /* Game_Tests.m */,
+				AA7208132388CD5700C8D109 /* GridlockTests.m */,
+				AA7208152388CD5700C8D109 /* Info.plist */,
+			);
+			path = GridlockTests;
+			sourceTree = "<group>";
+		};
 		AA8A20441674108A00325C4F = {
 			isa = PBXGroup;
 			children = (
 				AA865336168CF0D500E68411 /* QuartzCore.framework */,
 				AA8A20591674108B00325C4F /* Gridlock */,
-				AAB49104167B09CD00C20263 /* Unit Tests */,
+				AA7208122388CD5700C8D109 /* GridlockTests */,
 				AA8A20521674108B00325C4F /* Frameworks */,
 				AA8A20501674108B00325C4F /* Products */,
 			);
@@ -121,7 +125,7 @@
 			isa = PBXGroup;
 			children = (
 				AA8A204F1674108B00325C4F /* Gridlock.app */,
-				AAB490FF167B09CD00C20263 /* Unit Tests.octest */,
+				AA7208112388CD5700C8D109 /* GridlockTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -174,31 +178,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		AAB49104167B09CD00C20263 /* Unit Tests */ = {
-			isa = PBXGroup;
-			children = (
-				AAB49105167B09CD00C20263 /* Supporting Files */,
-				AAB49114167B0B6700C20263 /* Game_Tests.h */,
-				AAB49115167B0B6700C20263 /* Game_Tests.m */,
-				AAB73A8E167B28F900D97A6A /* FakeRandomizer.h */,
-				AAB73A8F167B28F900D97A6A /* FakeRandomizer.m */,
-			);
-			path = "Unit Tests";
-			sourceTree = "<group>";
-		};
-		AAB49105167B09CD00C20263 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				AAB49106167B09CD00C20263 /* Unit Tests-Info.plist */,
-				AAB49107167B09CD00C20263 /* InfoPlist.strings */,
-				AAB4910D167B09CD00C20263 /* Unit Tests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		AA7208102388CD5700C8D109 /* GridlockTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA72081A2388CD5700C8D109 /* Build configuration list for PBXNativeTarget "GridlockTests" */;
+			buildPhases = (
+				AA72080D2388CD5700C8D109 /* Sources */,
+				AA72080E2388CD5700C8D109 /* Frameworks */,
+				AA72080F2388CD5700C8D109 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA7208172388CD5700C8D109 /* PBXTargetDependency */,
+			);
+			name = GridlockTests;
+			productName = GridlockTests;
+			productReference = AA7208112388CD5700C8D109 /* GridlockTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		AA8A204E1674108A00325C4F /* Gridlock */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = AA8A20731674108B00325C4F /* Build configuration list for PBXNativeTarget "Gridlock" */;
@@ -216,25 +216,6 @@
 			productReference = AA8A204F1674108B00325C4F /* Gridlock.app */;
 			productType = "com.apple.product-type.application";
 		};
-		AAB490FE167B09CD00C20263 /* Unit Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = AAB49110167B09CD00C20263 /* Build configuration list for PBXNativeTarget "Unit Tests" */;
-			buildPhases = (
-				AAB490FA167B09CD00C20263 /* Sources */,
-				AAB490FB167B09CD00C20263 /* Frameworks */,
-				AAB490FC167B09CD00C20263 /* Resources */,
-				AAB490FD167B09CD00C20263 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				AAB49113167B09DE00C20263 /* PBXTargetDependency */,
-			);
-			name = "Unit Tests";
-			productName = "Unit Tests";
-			productReference = AAB490FF167B09CD00C20263 /* Unit Tests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -243,6 +224,13 @@
 			attributes = {
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Steve Gravrock";
+				TargetAttributes = {
+					AA7208102388CD5700C8D109 = {
+						CreatedOnToolsVersion = 10.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = AA8A204E1674108A00325C4F;
+					};
+				};
 			};
 			buildConfigurationList = AA8A20491674108A00325C4F /* Build configuration list for PBXProject "Gridlock" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -257,12 +245,19 @@
 			projectRoot = "";
 			targets = (
 				AA8A204E1674108A00325C4F /* Gridlock */,
-				AAB490FE167B09CD00C20263 /* Unit Tests */,
+				AA7208102388CD5700C8D109 /* GridlockTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		AA72080F2388CD5700C8D109 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		AA8A204D1674108A00325C4F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -275,33 +270,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAB490FC167B09CD00C20263 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAB49109167B09CD00C20263 /* InfoPlist.strings in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		AAB490FD167B09CD00C20263 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
+/* Begin PBXSourcesBuildPhase section */
+		AA72080D2388CD5700C8D109 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
+				AA7208202388CD9600C8D109 /* Game_Tests.m in Sources */,
+				AA7208142388CD5700C8D109 /* GridlockTests.m in Sources */,
+				AA72081F2388CD9600C8D109 /* FakeRandomizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
-/* End PBXShellScriptBuildPhase section */
-
-/* Begin PBXSourcesBuildPhase section */
 		AA8A204B1674108A00325C4F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -317,24 +298,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		AAB490FA167B09CD00C20263 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				AAB49116167B0B6700C20263 /* Game_Tests.m in Sources */,
-				AAB49117167B0DFF00C20263 /* Game.m in Sources */,
-				AAB73A8C167B273100D97A6A /* Randomizer.m in Sources */,
-				AAB73A90167B28F900D97A6A /* FakeRandomizer.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		AAB49113167B09DE00C20263 /* PBXTargetDependency */ = {
+		AA7208172388CD5700C8D109 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = AA8A204E1674108A00325C4F /* Gridlock */;
-			targetProxy = AAB49112167B09DE00C20263 /* PBXContainerItemProxy */;
+			targetProxy = AA7208162388CD5700C8D109 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -355,17 +325,114 @@
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
-		AAB49107167B09CD00C20263 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				AAB49108167B09CD00C20263 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		AA7208182388CD5700C8D109 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GridlockTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Steve-Gravrock.GridlockTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gridlock.app/Gridlock";
+			};
+			name = Debug;
+		};
+		AA7208192388CD5700C8D109 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = GridlockTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "Steve-Gravrock.GridlockTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Gridlock.app/Gridlock";
+			};
+			name = Release;
+		};
 		AA8A20711674108B00325C4F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -423,7 +490,7 @@
 				GCC_PREFIX_HEADER = "Gridlock/Gridlock-Prefix.pch";
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Gridlock/Gridlock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -437,47 +504,24 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
 				INFOPLIST_FILE = "Gridlock/Gridlock-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
-		AAB4910E167B09CD00C20263 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
-				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		AAB4910F167B09CD00C20263 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Unit Tests/Unit Tests-Prefix.pch";
-				INFOPLIST_FILE = "Unit Tests/Unit Tests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		AA72081A2388CD5700C8D109 /* Build configuration list for PBXNativeTarget "GridlockTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA7208182388CD5700C8D109 /* Debug */,
+				AA7208192388CD5700C8D109 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		AA8A20491674108A00325C4F /* Build configuration list for PBXProject "Gridlock" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -492,15 +536,6 @@
 			buildConfigurations = (
 				AA8A20741674108B00325C4F /* Debug */,
 				AA8A20751674108B00325C4F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		AAB49110167B09CD00C20263 /* Build configuration list for PBXNativeTarget "Unit Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				AAB4910E167B09CD00C20263 /* Debug */,
-				AAB4910F167B09CD00C20263 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

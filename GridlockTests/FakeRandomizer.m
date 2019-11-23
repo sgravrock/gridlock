@@ -16,13 +16,13 @@
 
 @implementation FakeRandomizer
 
-- (id)initWithResults:(int)firstResult, ...
+- (id)initWithResults:(NSUInteger)firstResult, ...
 {
 	self = [super init];
 	
 	if (self) {
 		next = 0;
-		self.results = [NSMutableArray arrayWithObject:[NSNumber numberWithInt:firstResult]];
+		self.results = [NSMutableArray arrayWithObject:[NSNumber numberWithUnsignedInteger:firstResult]];
 		va_list args;
 		va_start(args, firstResult);
 		BOOL done = NO;
@@ -42,7 +42,7 @@
 	return self;
 }
 
-- (int)randomBelow:(int)limit
+- (NSUInteger)randomBelow:(NSUInteger)limit
 {
 	id it = [self.results objectAtIndex:next++]; // will throw if out of range
 	return [it intValue];
@@ -50,7 +50,7 @@
 
 - (void)log
 {
-	NSLog(@"FakeRandomizer: next is position %d of %d", next, self.results.count);
+	NSLog(@"FakeRandomizer: next is position %d of %lu", next, (unsigned long)self.results.count);
 }
 
 @end

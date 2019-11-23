@@ -15,16 +15,16 @@
 	self = [super init];
 	
 	if (self) {
-		srand(time(NULL));
+		srand((int)time(NULL));
 		return [super init];
 	}
 	
 	return self;
 }
 
-- (int)randomBelow:(int)limit
+- (NSUInteger)randomBelow:(NSUInteger)limit
 {
-	return (int)((double)rand() / ((double)RAND_MAX + 1) * limit);
+	return (NSUInteger)((double)rand() / ((double)RAND_MAX + 1) * limit);
 }
 
 

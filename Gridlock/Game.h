@@ -15,16 +15,16 @@
 - (id)initWithRandomizer:(Randomizer *)randomizer;
 
 // The width and height of the board
-@property (nonatomic, readonly) int size;
+@property (nonatomic, readonly) NSUInteger size;
 // The colors of each cell, stored in row-major order. Empty cells are nil.
 @property (nonatomic, readonly, strong) NSMutableArray *cells;
 // The next three colors that will be placed somewhere on the board at random.
 // Each element is a UIColor.
 @property (nonatomic, readonly, strong) NSMutableArray *nextColors;
-@property (nonatomic, readonly) int score;
+@property (nonatomic, readonly) NSUInteger score;
 
-- (int)freeCells;
+- (NSUInteger)freeCells;
 - (NSString *)toStringForLog;
-- (void)moveFromCell:(int)srcIx toCell:(int)destIx;
+- (void)moveFromCell:(NSUInteger)srcIx toCell:(NSUInteger)destIx;
 
 @end

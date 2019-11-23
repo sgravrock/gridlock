@@ -126,7 +126,7 @@
 	
 	CellView *cv = (CellView *)dragGesture.view;
 	CGPoint translation = [dragGesture translationInView:self.view];
-	int srcIx, destIx;
+	NSUInteger srcIx, destIx;
 	
 	switch (dragGesture.state) {
 		case UIGestureRecognizerStateBegan:
@@ -158,17 +158,16 @@
 	}
 }
 
-- (int)indexOfCellViewUnderCellView:(CellView *)src
+- (NSUInteger)indexOfCellViewUnderCellView:(CellView *)src
 {
 	src.userInteractionEnabled = NO; // prevents src from being returned from hitTest:withEvent:
 	id target = [self.boardView hitTest:src.center withEvent:nil];
 	src.userInteractionEnabled = YES;
 	
-	int result = [self.boardView.cellViews indexOfObject:target];
-	return result;
+	return [self.boardView.cellViews indexOfObject:target];
 }
 
-- (void)moveFromCell:(int)srcIx toCell:(int)destIx
+- (void)moveFromCell:(NSUInteger)srcIx toCell:(NSUInteger)destIx
 {
 	[self.game moveFromCell:srcIx toCell:destIx];
 	
@@ -192,7 +191,7 @@
 {
 	[self copyColors:self.game.cells toViews:self.boardView.cellViews];
 	[self copyColors:self.game.nextColors toViews:self.previewCells];
-	self.score.text = [NSString stringWithFormat:@"%d", self.game.score];
+	self.score.text = [NSString stringWithFormat:@"%lu", (unsigned long)self.game.score];
 }
 
 - (void)copyColors:(NSArray *)colors toViews:(NSArray *)views

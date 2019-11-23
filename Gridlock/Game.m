@@ -18,14 +18,14 @@
 @property (nonatomic, strong) NSMutableArray *cells;
 @property (nonatomic, strong) NSArray *colors;
 @property (nonatomic, strong) NSMutableArray *nextColors;
-@property (nonatomic) int score;
+@property (nonatomic) NSUInteger score;
 
 - (UIColor *)randomColor;
-- (int)cellIndexAbove:(int)index;
-- (int)cellIndexBelow:(int)index;
-- (int)cellIndexLeftOf:(int)index;
-- (int)cellIndexRightOf:(int)index;
-- (BOOL)canReachCell:(int)destIx fromCell:(int)srcIx;
+- (NSUInteger)cellIndexAbove:(NSUInteger)index;
+- (NSUInteger)cellIndexBelow:(NSUInteger)index;
+- (NSUInteger)cellIndexLeftOf:(NSUInteger)index;
+- (NSUInteger)cellIndexRightOf:(NSUInteger)index;
+- (BOOL)canReachCell:(NSUInteger)destIx fromCell:(NSUInteger)srcIx;
 @end
 
 @implementation Game
@@ -66,7 +66,7 @@
 		} else {
 			self.cells = [NSMutableArray arrayWithCapacity:size * size];
 			
-			for (int i = 0; i < size * size; i++) {
+			for (NSUInteger i = 0; i < size * size; i++) {
 				[self.cells addObject:[NSNull null]];
 			}
 		}
@@ -101,18 +101,18 @@
 {
 	[coder encodeObject:self.cells forKey:@"cells"];
 	[coder encodeObject:self.nextColors forKey:@"nextColors"];
-	[coder encodeInt:self.score forKey:@"score"];
+	[coder encodeInt:(int)self.score forKey:@"score"];
 }
 #pragma mark -
 
-- (int)size
+- (NSUInteger)size
 {
 	return size;
 }
 
-- (int)freeCells
+- (NSUInteger)freeCells
 {
-	int n = 0;
+	NSUInteger n = 0;
 	
 	for (id c in self.cells) {
 		if (c == [NSNull null]) {
@@ -123,7 +123,7 @@
 	return n;
 }
 
-- (void)moveFromCell:(int)srcIx toCell:(int)destIx
+- (void)moveFromCell:(NSUInteger)srcIx toCell:(NSUInteger)destIx
 {
 	if ([self.cells objectAtIndex:srcIx] == [NSNull null] ||
 		[self.cells objectAtIndex:destIx] != [NSNull null] ||
@@ -154,7 +154,7 @@
 	void (^addCap)() = ^{
 		[s appendString:@"   +"];
 		
-		for (int i = 0; i < size ; i++) {
+		for (NSUInteger i = 0; i < size ; i++) {
 			[s appendString:@"-"];
 		}
 		
@@ -162,20 +162,20 @@
 	};
 	
 	addCap();
-	for (int y = 0; y < size; y++) {
-		[s appendFormat:@"%2d |", y * size];
+	for (NSUInteger y = 0; y < size; y++) {
+		[s appendFormat:@"%2lu |", y * size];
 		
-		for (int x = 0; x < size; x++) {
+		for (NSUInteger x = 0; x < size; x++) {
 			id contents = [self.cells objectAtIndex:x + y * size];
 			
 			if (contents == [NSNull null]) {
 				[s appendString:@" "];
 			} else {
 				NSAssert(self.colors.count < 10, @"Too many colors to format the log properly");
-				[s appendFormat:@"%u", [self.colors indexOfObject:contents]];
+				[s appendFormat:@"%lu", (unsigned long)[self.colors indexOfObject:contents]];
 			}
 		}
-		[s appendFormat:@"| %2d\n", y * size + size - 1];
+		[s appendFormat:@"| %2lu\n", y * size + size - 1];
 	}
 		
 	addCap();
@@ -184,8 +184,8 @@
 
 - (NSArray *)findRun
 {
-	for (int y = 0; y < size; y++) {
-		for (int x = 0; x < size; x++) {
+	for (NSUInteger y = 0; y < size; y++) {
+		for (NSUInteger x = 0; x < size; x++) {
 			// Vertical
 			NSArray *run = [self runFromCellIndex:y * size + x offset:size];
 			
@@ -218,7 +218,7 @@
 
 // Returns the run of matching, non-empty cells starting at startIx,
 // or nil if it's not a run.
-- (NSArray *)runFromCellIndex:(int)i offset:(int)offset
+- (NSArray *)runFromCellIndex:(NSUInteger)i offset:(NSUInteger)offset
 {
 	id first = [self.cells objectAtIndex:i];
 	
@@ -227,7 +227,7 @@
 	}
 	
 	NSMutableArray *candidate = [NSMutableArray arrayWithCapacity:RUN_LENGTH]; // might get bigger
-	[candidate addObject:[NSNumber numberWithInt:i]];
+	[candidate addObject:[NSNumber numberWithUnsignedInteger:i]];
 	BOOL isVertical = offset % size == 0;
 	
 	// Continue to the edge of the board or until we hit a non-matching cell
@@ -236,7 +236,7 @@
 			break;
 		}
 		
-		[candidate addObject:[NSNumber numberWithInt:i]];
+		[candidate addObject:[NSNumber numberWithUnsignedInteger:i]];
 	}
 	
 	if (candidate.count >= RUN_LENGTH) {
@@ -271,11 +271,11 @@
 - (void)placeRandomChips
 {
 	// Randomly place up to three random colors.
-	int toPlace = MIN(3, [self freeCells]);
+	NSUInteger toPlace = MIN(3, [self freeCells]);
 	int placed = 0;
 	
 	while (placed < toPlace) {
-		int where = [self.randomizer randomBelow:size * size];
+		NSUInteger where = [self.randomizer randomBelow:size * size];
 	
 		if ([self.cells objectAtIndex:where] == [NSNull null]) {
 			[self.cells replaceObjectAtIndex:where
@@ -293,16 +293,16 @@
 	return [self.colors objectAtIndex:[self.randomizer randomBelow:self.colors.count]];
 }
 
-- (BOOL)canReachCell:(int)destIx fromCell:(int)srcIx
+- (BOOL)canReachCell:(NSUInteger)destIx fromCell:(NSUInteger)srcIx
 {
 	NSMutableSet *reached = [NSMutableSet set];
-	NSMutableSet *toTest = [NSMutableSet setWithObject:[NSNumber numberWithInt:srcIx]];
+	NSMutableSet *toTest = [NSMutableSet setWithObject:[NSNumber numberWithUnsignedInteger:srcIx]];
 	
 	while (toTest.count > 0) {
 		NSNumber *boxed = [toTest anyObject];
 		[toTest removeObject:boxed];
 		int c = [boxed intValue];
-		int neighbors[] = {
+		NSUInteger neighbors[] = {
 			[self cellIndexAbove:c],
 			[self cellIndexBelow:c],
 			[self cellIndexLeftOf:c],
@@ -310,9 +310,9 @@
 		};
 		
 		// Evaluate all existing cells in the four directions
-		for (int i = 0; i < sizeof neighbors / sizeof *neighbors; i++) {
-			int n = neighbors[i];
-			boxed = [NSNumber numberWithInt:n];
+		for (NSUInteger i = 0; i < sizeof neighbors / sizeof *neighbors; i++) {
+			NSUInteger n = neighbors[i];
+			boxed = [NSNumber numberWithUnsignedInteger:n];
 			
 			if (n >= 0 && n < self.cells.count &&
 				[self.cells objectAtIndex:n] == [NSNull null] &&
@@ -330,22 +330,23 @@
 	
 	return NO;
 }
-- (int)cellIndexAbove:(int)index
+
+- (NSUInteger)cellIndexAbove:(NSUInteger)index
 {
 	return index - size;
 }
 
-- (int)cellIndexBelow:(int)index
+- (NSUInteger)cellIndexBelow:(NSUInteger)index
 {
 	return index + size;
 }
 
-- (int)cellIndexLeftOf:(int)index
+- (NSUInteger)cellIndexLeftOf:(NSUInteger)index
 {
 	return index % size == 0 ? -1 : index - 1;
 }
 
-- (int)cellIndexRightOf:(int)index
+- (NSUInteger)cellIndexRightOf:(NSUInteger)index
 {
 	return index % size == index - 1 ? -1 : index + 1;
 }

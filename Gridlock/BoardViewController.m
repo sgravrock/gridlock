@@ -208,9 +208,4 @@
 	}
 }
 
-- (void)viewDidUnload {
-    [self setPreviewCells:nil];
-    [super viewDidUnload];
-}
-
 @end

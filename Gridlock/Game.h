@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 @class Randomizer;
 
-@interface Game : NSObject<NSCoding>
+@interface Game : NSObject<NSCoding, NSSecureCoding>
 
 - (id)init;
 - (id)initWithRandomizer:(Randomizer *)randomizer;

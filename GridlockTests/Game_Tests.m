@@ -267,13 +267,17 @@
 	Randomizer *r = [[FakeRandomizer alloc] initWithResults: 0, 2, 4, 0, 1, 2, 0, 0, 0, -1];
 	Game *oldGame = [[Game alloc] initWithRandomizer:r];
 	oldGame.score = 42;
-	NSMutableData *data = [NSMutableData data];
-	NSKeyedArchiver *archiver = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-	[oldGame encodeWithCoder:archiver];
-	[archiver finishEncoding];
-	NSKeyedUnarchiver *unarchiver = [[NSKeyedUnarchiver alloc] initForReadingWithData:data];
-	Game *newGame = [[Game alloc] initWithCoder:unarchiver];
 	
+	NSError *error;
+	NSData *data = [NSKeyedArchiver archivedDataWithRootObject:oldGame
+										 requiringSecureCoding:YES
+														 error:&error];
+	XCTAssertNotNil(data);
+	XCTAssertNil(error);
+	Game *newGame = [NSKeyedUnarchiver unarchivedObjectOfClass:[Game class] fromData:data error:&error];
+	XCTAssertNotNil(newGame);
+	XCTAssertNil(error);
+
 	XCTAssertEqualObjects(newGame.cells, oldGame.cells, @"Cells don't match");
 	XCTAssertEqualObjects(newGame.nextColors, oldGame.nextColors, @"Next colors don't match");
 	XCTAssertEqual(newGame.score, oldGame.score, @"Score doesnt match");

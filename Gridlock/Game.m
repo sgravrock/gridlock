@@ -30,6 +30,10 @@
 
 @implementation Game
 
++ (BOOL)supportsSecureCoding {
+	return YES;
+}
+
 - (id)init
 {
 	return [self initWithRandomizer:[[Randomizer alloc] init]];
@@ -86,9 +90,14 @@
 #pragma mark - NSCoding
 - (id)initWithCoder:(NSCoder *)coder
 {
+	NSSet *colorClasses = [NSSet setWithObjects:[NSMutableArray class], [UIColor class], [NSNull class], nil];
+	NSMutableArray *cells = [coder decodeObjectOfClasses:colorClasses
+												  forKey:@"cells"];
+	NSMutableArray *nextColors = [coder decodeObjectOfClasses:colorClasses
+													   forKey:@"nextColors"];
 	self = [self initWithRandomizer:[[Randomizer alloc] init]
-							  cells:[coder decodeObjectForKey:@"cells"]
-						 nextColors:[coder decodeObjectForKey:@"nextColors"]];
+							  cells:cells
+						 nextColors:nextColors];
 	
 	if (self) {
 		self.score = [coder decodeIntForKey:@"score"];
@@ -151,10 +160,10 @@
 - (NSString *)toStringForLog
 {
 	NSMutableString *s = [NSMutableString stringWithString:@"\n"];
-	void (^addCap)() = ^{
+	void (^addCap)(void) = ^{
 		[s appendString:@"   +"];
 		
-		for (NSUInteger i = 0; i < size ; i++) {
+		for (NSUInteger i = 0; i < self->size ; i++) {
 			[s appendString:@"-"];
 		}
 		
@@ -223,7 +232,7 @@
 	id first = [self.cells objectAtIndex:i];
 	
 	if (first == [NSNull null]) {
-		return NO;
+		return nil;
 	}
 	
 	NSMutableArray *candidate = [NSMutableArray arrayWithCapacity:RUN_LENGTH]; // might get bigger
